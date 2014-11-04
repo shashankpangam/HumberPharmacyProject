@@ -4,10 +4,22 @@ require_once './header.php';
 <div id="content">
 <form id="contactme" action="#" method="post" >
         <fieldset>
-            <?php echo 'LOGIN COMING SOON...'; ?>
+            <div class="loginmotion"
+                <p><strong><font color="red"><?php echo "Please Login below for fast checkout"?></font></strong></p><br/>
+                <label>Username</label>&nbsp;<input type="text" /><br/><br/>               
+                <label>Password</label>&nbsp; <input type="password" /><br/><br/>
+                <button>Login</button>&nbsp;
+                <button>Cancel</button><br /><br/>
+                <p><strong>New Customers</strong></p>
+                <p>If you have never shopped at HumnerPharmacy.com, you will need to <a href="register.php">create a new account.</a></p>
+                <p>If you have any questions, you can e-mail us or call us at 1-800-drugstore (1-800-378-4786).</p> 
+            </div>
         </fieldset>
 </form>
 </div>
 <?php
 require_once './footer.php';
 ?>
+
+
+
