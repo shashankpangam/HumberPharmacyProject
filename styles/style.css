@@ -72,6 +72,7 @@ body{
     width:233px;
     float:left;
     padding:15px 0 0 4px
+
 }
 #navigation{
     background-color:#92A117;
@@ -126,7 +127,7 @@ body{
     padding:0 0 7px 25px;
     line-height:17px;
     height:18px;
-   
+
     display:block;
 }
 .categories a{
@@ -164,10 +165,10 @@ body{
     width:682px;
     float:left;
 }
-  /* Prevents slides from flashing */
-    #slides {
-      display:none;
-    }
+/* Prevents slides from flashing */
+#slides {
+    display:none;
+}
 #inside{
     padding:15px 0 0 17px;
     float:left
@@ -192,8 +193,12 @@ body{
     float:left;
     padding:0 0 12px 0
 }
+.saleprodheader{
+    padding: 5px 0px 0px 5px;
+}
 #items{
     float:left;
+    padding-top: 20px;
 }
 .item{
     width:213px;
@@ -263,13 +268,24 @@ body{
     font-size:11px
 }
 .loginmotion{
-    margin: 50px 0px 50px 50px;
+    padding: 30px 30px 0px 275px;
 }
-
-
+.login_motion{
+    padding-top: 20px;
+}
+.regitrationmotion{
+    padding: 30px 30px 0px 275px;
+}
+.container{
+    padding-left: 5px;
+}
+.contactform{
+    padding: 20px 0px 0px 275px;
+}
 
 
 /* Slider Styles */
 .slidesjs-navigation{
-display: none;
+    display: none;
 }
+
