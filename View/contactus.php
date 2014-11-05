@@ -53,25 +53,27 @@ function test_input($data) {
 <div id="content">
     <?php require_once './sidebar.php'; ?>
     <div class="contactform">
-        <h2>Contact Us</h2>
-        <br/>
-        <form method="post" action="#"> 
-            Name<span class="error">*: <input type="text" name="name">
-                <?php echo $nameErr; ?></span>
-            <br><br>           
-            E-mail<span class="error">*: <input type="text" name="email">
-                <?php echo $emailErr; ?></span>
-            <br><br>
-            Gender<span class="error">*</span>:
-            <input type="radio" name="gender" value="female">Female
-            <input type="radio" name="gender" value="male">Male
-            <span class="error"><?php echo $genderErr; ?></span>
-            <br><br>
-            Comment:<br/> 
-            <textarea name="comment" rows="5" cols="40"></textarea>
-            <br><br>
-            <input type="submit" name="submit" value="Submit"> 
-        </form>
+        <fieldset>
+            <h2>Contact Us</h2>
+            <br/>
+            <form method="post" action="#"> 
+                Name<span class="error">*: <input type="text" name="name">
+                    <?php echo $nameErr; ?></span>
+                <br><br>           
+                E-mail<span class="error">*: <input type="text" name="email">
+                    <?php echo $emailErr; ?></span>
+                <br><br>
+                Gender<span class="error">*</span>:
+                <input type="radio" name="gender" value="female">Female
+                <input type="radio" name="gender" value="male">Male
+                <span class="error"><?php echo $genderErr; ?></span>
+                <br><br>
+                Comment:<br/> 
+                <textarea name="comment" rows="5" cols="40"></textarea>
+                <br><br>
+                <input type="submit" name="submit" value="Submit"> 
+            </form>
+        </fieldset>
     </div>
 </div>
 <?php require_once './footer.php'; ?>
