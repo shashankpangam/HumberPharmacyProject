@@ -9,8 +9,9 @@ class Product{
     private $ondiscount;
     private $quantity;
     private $sold;
+    private $image;
     
-    public function __construct($id,$name,$desc,$symptoms,$category,$price,$ondis,$qty,$sold) {
+    public function __construct($id,$name,$desc,$symptoms,$category,$price,$ondis,$qty,$sold,$image) {
         $this->productid=$id;
         $this->name=$name;
         $this->description=$desc;
@@ -97,7 +98,14 @@ class Product{
     {
         $this->sold=$sold;
     }
-    #Jay Test
+    public function getProductImage()
+    {
+        return $this->image;
+    }
+    public function setProductImage($img)
+    {
+        $this->image=$img;
+    }
 }
 ?>
 

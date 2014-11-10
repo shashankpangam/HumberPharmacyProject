@@ -1,7 +1,7 @@
 <?php
 class Databases
 {
-    private static $constring = 'mysql:host=104.131.75.50;dbname=humberpharmacy';
+    private static $constring = 'mysql:host=104.131.75.50;dbname=HumberPharmacy';
     private static $username = 'root';
     private static $password = 'shashankpangam';
     

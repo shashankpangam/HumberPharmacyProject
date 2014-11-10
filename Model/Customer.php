@@ -12,7 +12,7 @@
         private $gender;
         private $email;
         private $password;
-    
+        
         public function __construct($id,$fname,$lname,$dob,$address1,$address2,$city,$zip,$province,$gender,$email,$password) {
             $this->id=$id;
             $this->fname=$fname;

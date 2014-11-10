@@ -1,3 +1,4 @@
+
 <?php
     require_once './Customer.php';
     require_once './Databases.php';
@@ -30,8 +31,20 @@
             return $records;
         }
         
-        public static function insertCustomer($fname,$lname,$dob,$address1,$address2,$city,$zip,$province,$gender,$email,$password)
+        public static function insertCustomer($customer)
         {
+            $fname=$customer->fname;
+            $lname=$customer->lname;
+            $dob=$customer->dob;
+            $address1=$customer->address1;
+            $address2=$customer->address2;
+            $city=$customer->city;
+            $zip=$customer->zip;
+            $province=$customer->province;
+            $gender=$customer->gender;
+            $email=$customer->email;
+            $password=$customer->password;
+            
             $db=  Databases::connectDB();
             $query = "insert into tbl_customer (Firstname,Lastname,dob,address1,address2,city,zip,province,Gender,email,password) values (:fname, :lname, :dob, :address1, :address2, :city, :zip, :province, :gender, :email, :password)";
             $stm=$db->prepare($query);
@@ -51,8 +64,21 @@
             return $lastid;
         }
         
-        public static function updateCustomer($id,$fname,$lname,$dob,$address1,$address2,$city,$zip,$province,$gender,$email,$password)
+        public static function updateCustomer($customer)
         {
+            $id=$customer->id;
+            $fname=$customer->fname;
+            $lname=$customer->lname;
+            $dob=$customer->dob;
+            $address1=$customer->address1;
+            $address2=$customer->address2;
+            $city=$customer->city;
+            $zip=$customer->zip;
+            $province=$customer->province;
+            $gender=$customer->gender;
+            $email=$customer->email;
+            $password=$customer->password;
+            
             $db=  Databases::connectDB();
             $query = "update tbl_customer set Firstname=:fname, Lastname=:lname, dob=:dob, address1=:address1, address2=:address2, city=:city, zip=:zip, province=:province, gender=:gender, email=:email, password=:password where customerid=:id";
             $stm=$db->prepare($query);
@@ -72,8 +98,9 @@
             return $result;
         }
         
-        public static function deleteData($id)
+        public static function deleteData($customer)
         {
+            $id=$customer->id;
             $db=  Databases::connectDB();
             $query="delete from tbl_customer where customerid=:id";
             $stm=$db->prepare($query);
