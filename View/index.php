@@ -4,7 +4,6 @@ require_once 'header.php';
 <?php
 require_once '../Model/Databases.php';
 ?>
-
 <div id="content">
 
     <?php require_once './sidebar.php'; ?>
