@@ -1,6 +1,7 @@
 <?php
-require_once './Offer.php';
-require_once './Databases.php';
+
+require_once 'Databases.php';
+require_once 'Offer.php';
 
 class Offer_DB {
     public static function getAllOffers()
@@ -28,7 +29,9 @@ class Offer_DB {
         $query='select * from tbl_offers where offerid=:id';
         $stm=$db->prepare($query);
         $stm->bindParam(':id',$id, PDO::PARAM_STR, 10);
-        $result = $stm->execute();
+        $stm->execute();
+        
+        $result=$stm->fetch();
         
         $record = new Offer($result['offerid'],
                 $result['productid'], 

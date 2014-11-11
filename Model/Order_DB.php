@@ -1,6 +1,7 @@
 <?php
-require_once './Order.php';
-require_once './Databases.php';
+
+require_once 'Databases.php';
+require_once 'Order.php';
 
 class Order_DB {
     
@@ -29,7 +30,9 @@ class Order_DB {
             $query = 'select * from tbl_order where id=:id';
             $stm=$db->prepare($query);
             $stm->bindParam(':id',$id, PDO::PARAM_STR, 10);
-            $result = $stm->execute();
+            $stm->execute();
+        
+            $result=$stm->fetch();
             
             $record = new Order($result['orderid'],
                         $result['productid'],
@@ -46,7 +49,8 @@ class Order_DB {
         $query = 'select * from tbl_order where customerid=:customerid';
         $stm=$db->prepare($query);
         $stm->bindParam(':customerid',$customerid, PDO::PARAM_STR, 10);
-        $result = $stm->execute();
+        $stm->execute();
+        $results=$stm->fetchAll();
         
         $records = array();
             foreach($results as $row)
@@ -69,7 +73,9 @@ class Order_DB {
         $query = 'select * from tbl_order where productid=:productid';
         $stm=$db->prepare($query);
         $stm->bindParam(':productid',$productid, PDO::PARAM_STR, 10);
-        $result = $stm->execute();
+        $stm->execute();
+        
+        $results=$stm->fetchAll();
         
         $records = array();
             foreach($results as $row)

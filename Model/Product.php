@@ -21,6 +21,7 @@ class Product{
         $this->quantity=$qty;
         $this->sold=$sold;
         $this->symptoms=$symptoms;
+        $this->image=$image;
     }
     
     public function getProductID()

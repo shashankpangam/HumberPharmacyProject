@@ -1,6 +1,8 @@
 <?php
-require_once './Review.php';
-require_once './Databases.php';
+
+require_once 'Databases.php';
+require_once 'Review.php';
+
 class Review_DB {
     public static function getAllReviews()
     {
@@ -29,21 +31,18 @@ class Review_DB {
         $query = 'select * from tbl_review where reviewid=:reviewid';
         $stm=$db->prepare($query);
         $stm->bindParam(':reviewid',$id, PDO::PARAM_STR, 10);
-        $result = $stm->execute();
+        $stm->execute();
         
-        $records = array();
-            foreach($results as $row)
-            {
-                $record = new Review($row['reviewid'],
-                        $row['productid'],
-                        $row['customerid'],
-                        $row['review'],
-                        $row['stars'],
-                        $row['reviewts']);
+        $results=$stm->fetch();
+            
+                $record = new Review($results['reviewid'],
+                        $results['productid'],
+                        $results['customerid'],
+                        $results['review'],
+                        $results['stars'],
+                        $results['reviewts']);
                 
-                $records[]=$record;
-            }
-            return $records;
+            return $record;
     }
     
     public static function getReviewByProducts($productID)
@@ -52,7 +51,9 @@ class Review_DB {
         $query = 'select * from tbl_review where productid=:productid';
         $stm=$db->prepare($query);
         $stm->bindParam(':productid',$productID, PDO::PARAM_STR, 10);
-        $result = $stm->execute();
+        $stm->execute();
+        
+        $results=$stm->fetchAll();
         
         $records = array();
             foreach($results as $row)
@@ -75,7 +76,9 @@ class Review_DB {
         $query = 'select * from tbl_review where customerid=:customerid';
         $stm=$db->prepare($query);
         $stm->bindParam(':customerid',$customerID, PDO::PARAM_STR, 10);
-        $result = $stm->execute();
+        $stm->execute();
+        
+        $results=$stm->fetchAll();
         
         $records = array();
             foreach($results as $row)
@@ -106,7 +109,7 @@ class Review_DB {
         $stm->bindParam(':review',$rev, PDO::PARAM_STR);
         $stm->bindParam(':stars',$stars, PDO::PARAM_INT, 1);
         $result = $stm->execute();
-        $lastid=$stm->lastInsertId();
+        $lastid=$result->lastInsertId();
         return $lastid;
     }
 }

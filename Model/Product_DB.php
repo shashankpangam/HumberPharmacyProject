@@ -1,7 +1,6 @@
 <?php
-
-require_once './Product.php';
-require_once './Databases.php';
+require_once 'Databases.php';
+require_once 'Product.php';
 
 class Product_DB{
     public static function getAllProducts(){
@@ -33,7 +32,8 @@ class Product_DB{
             $query = 'select * from tbl_product where id=:id';
             $stm=$db->prepare($query);
             $stm->bindParam(':id',$id, PDO::PARAM_STR, 10);
-            $result = $stm->execute();
+            $stm->execute();
+            $result=$stm->fetch();
             
             $record = new Product($result['productid'],
                         $result['name'],
@@ -54,9 +54,10 @@ class Product_DB{
         $query='select * from tbl_product where category=:category';
         
         $stm=$db->prepare($query);
-        $stm->bindParam(':category',$category, PDO::PARAM_STR, 10);
-        $results = $stm->execute();
+        $stm->bindParam(':category',$category, PDO::PARAM_STR);
+        $stm->execute();
         
+        $results=$stm->fetchAll();
         $records = array();
             foreach($results as $row)
             {

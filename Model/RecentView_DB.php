@@ -1,6 +1,7 @@
 <?php
-require_once './RecentView.php';
-require_once './Databases.php';
+
+require_once 'Databases.php';
+require_once 'RecentView.php';
 
 class RecentView_DB {
     public static function getRecentViews($id)
@@ -9,7 +10,9 @@ class RecentView_DB {
         $query = 'select top 5 * from tbl_recentview where customerid=:customerid order by viewtime desc';
         $stm=$db->prepare($query);
         $stm->bindParam(':customerid',$id, PDO::PARAM_STR, 10);
-        $result = $stm->execute();
+        $stm->execute();
+        
+        $results=$stm->fetchAll();
         
         $records = array();
             foreach($results as $row)
