@@ -201,7 +201,7 @@ body{
     padding-top: 20px;
 }
 .item{
-    width:213px;
+    width:190px;
     border:1px solid #BBBBBB;
     margin:10px 0 0 0;
     float:left;
@@ -296,7 +296,7 @@ body{
     width: 400px;
 }
 .contusfs{
-    padding: 20px;
+    padding: 0px;
     width: 365px;
 }
 /* Slider Styles */
@@ -307,7 +307,18 @@ body{
     width: 60px;
     height: 30px;
     background-color: #3399FF;
-    color: white;
+    color: white;    
+}
+.bonesubmit{
+    padding-left:10px;
+    padding-top:10px; 
+}
+.btwosubmit{
+    padding-left: 95px;
+
+}
+.slide{
+    padding-left: 20px
 }
 /*opacity on login file*/
 .transperent {
