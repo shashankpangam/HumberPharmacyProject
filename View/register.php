@@ -5,9 +5,6 @@ $error_message = $firstname = $lastname = $dob = $address1 = $address2 = $city =
 require_once '../Model/Customer.php';
 require_once '../Model/Customer_DB.php';
 
-    
-    
-
 if (isset($_POST['submit'])) {
     
     //open a connection with the database
@@ -23,7 +20,7 @@ if (isset($_POST['submit'])) {
     $city = $_POST['city'];
     $zipcode = $_POST['zipcode'];
     $province = $_POST['province'];
-    //$gender = $_POST['gender'];
+    $gender = $_POST['gender'];
     $eemail = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -42,8 +39,10 @@ if (isset($_POST['submit'])) {
     }
     else
     {
-        //$customer=new Customer($)
-        //$insert=  Customer_DB::insertCustomer($customer);
+        $customer=new Customer($firstname,$lastname,$dob,$address1,$address2,$city,$zipcode,$province,$gender,$eemail,$username,$password);
+        
+        $insert=Customer_DB::insertCustomer($customer);
+        header("Location: index.php");        
     }   
     
 }
@@ -115,7 +114,7 @@ if (isset($_POST['submit'])) {
                         </tr>
                         <tr>
                             <td>Password<font color="red">*</font>:</td>
-                            <td><span class="error"><input type="text" name="password" value="<?php echo $password;?>"/></span></td>		
+                            <td><span class="error"><input type="password" name="password" value="<?php echo $password;?>"/></span></td>		
                         </tr>
                     </table>
                     <div class="bonesubmit">

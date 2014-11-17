@@ -49,28 +49,33 @@ function test_input($data) {
 <div id="content">
     <?php require_once './sidebar.php'; ?>
     <div class="contactform">
-    
+
         <p class="txtcontus"><font color="white"><strong>Contact Us</strong></font></p><br />
         <form method="post" action="#"> 
-            <fieldset class="contusfs">
-            Name<span class="error">*: <input type="text" name="name">
-                <?php echo $nameErr; ?></span>
-            <br><br>           
-            E-mail<span class="error">*: <input type="text" name="email">
-                <?php echo $emailErr; ?></span>
-            <br><br>
-            Gender<span class="error">*</span>:
-            <input type="radio" name="gender" value="male">Male
-            <input type="radio" name="gender" value="female">Female           
-            <span class="error"><?php echo $genderErr; ?></span>
-            <br><br>
-            Comment:<br/> 
-            <textarea name="comment" rows="5" cols="40"></textarea>
-            <br><br>
-            <input class="btnsubmit" type="submit" name="submit" value="Submit"> 
+            <fieldset class="contusfs" style="width:405px;height: 270px;">
+                <div style="padding:13px 0px 10px 20px">
+                    Name<span class="error">*: <input type="text" name="name">
+                        <?php echo $nameErr; ?></span>
+                    <br><br>           
+                    E-mail<span class="error">*: <input type="text" name="email">
+                        <?php echo $emailErr; ?></span>
+                    <br><br>
+                    Gender<span class="error">*</span>:
+                    <input type="radio" name="gender" value="male">Male
+                    <input type="radio" name="gender" value="female">Female           
+                    <span class="error"><?php echo $genderErr; ?></span>
+                    <br><br>
+                    Comment(s):<br/> 
+                    <textarea name="comment" rows="5" cols="40"></textarea>
+                    <br><br>
+                    <input class="btnsubmit" type="submit" name="submit" value="Submit">
+                    <span class="btwosubmit" style="padding-left: 30px">
+                        <a href ="index.php>"><input class="btnsubmit" type="submit" name="clear" value="Cancel" style="background-color:#CC3300;"></a>
+                    </span>
+                </div>
             </fieldset>
         </form>
-        
+
     </div> 
 </div>
 <?php require_once './footer.php'; ?>

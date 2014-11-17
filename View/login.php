@@ -1,15 +1,32 @@
 <!--<div class="transperent"></div>-->
-<?php
-$error_message = $username = $password = "";
 
-//include './indexLogin.php';
+<?php
+session_start();
+$error_message = $username = $password = "";
+require_once '../Model/Customer.php';
+require_once '../Model/Customer_DB.php';
+
+
+
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
-    //$password = $_POST['password'];
-
-    if (empty($username) || empty($password)) {
-        $error_message = "*One or more required fields are blank or invalid.";
+    $password = $_POST['password'];  
+      
+    if ($username != '' && $password != '') {
+        $db = Databases::connectDB();
+        $query ="select * from tbl_customer where username='" . $username . "' and password='" . $password . "'";
+        $res = $db->query($query);
+        
+        if($res){
+            $_SESSION['username'] = $username;
+            header('location:welcome.php');
+        }else {
+            echo'You entered username or password is incorrect';
+        }
+    } else {
+        echo'Enter both username and password';
     }
+
 }
 ?>
 
@@ -21,7 +38,7 @@ if (isset($_POST['submit'])) {
 
         <p class="txtcontus" style="width: 360px"><font color="white"><strong>Customer Login</strong></font></p><br />
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"> 
-            
+
             <fieldset class="contusfs" style="height: 220px">
                 <font color="red"><p style="padding-left: 25px;"><?php echo $error_message; ?></p></font>
                 <div class="slide">
@@ -36,14 +53,14 @@ if (isset($_POST['submit'])) {
                         </tr>
                     </table>
 
-                   <div class="bonesubmit">
+                    <div class="bonesubmit">
                         <input class="btnsubmit" type="submit" name="submit" value="Login" >
 
                         <span class="btwosubmit" style="padding-left: 30px">
                             <a href ="index.php>"><input class="btnsubmit" type="submit" name="clear" value="Cancel" style="background-color:#CC3300;"></a>
                         </span>
-                   </div><br> 
-                   <a href="index.php">Forgot password click here</a>
+                    </div><br> 
+                    <a href="index.php">Forgot password click here</a>
                 </div>
             </fieldset>
         </form>

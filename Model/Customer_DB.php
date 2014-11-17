@@ -12,28 +12,29 @@ class Customer_DB {
 
         $records = array();
         foreach ($results as $row) {
-            $record = new Customer($row['customerid'], $row['firstname'], $row['lastname'], $row['dob'], $row['address1'], $row['address2'], $row['city'], $row['zip'], $row['province'], $row['gender'], $row['email'], $row['password'], $row['lastsignin']);
+            $record = new Customer($row['customerid'], $row['firstname'], $row['lastname'], $row['dob'], $row['address1'], $row['address2'], $row['city'], $row['zip'], $row['province'], $row['gender'], $row['email'],$row['username'], $row['password'], $row['lastsignin']);
 
             $records[] = $record;
         }
         return $records;
     }
 
-    public static function insertCustomer($customer) {
-        $fname = $customer->fname;
-        $lname = $customer->lname;
-        $dob = $customer->dob;
-        $address1 = $customer->address1;
-        $address2 = $customer->address2;
-        $city = $customer->city;
-        $zip = $customer->zip;
-        $province = $customer->province;
-        $gender = $customer->gender;
-        $email = $customer->email;
-        $password = $customer->password;
+    public static function insertCustomer($customer) {       
+        $fname = $customer->getFname();
+        $lname = $customer->getLname();
+        $dob = $customer->getDOB();
+        $address1 = $customer->getAddress1();
+        $address2 = $customer->getAddress2();
+        $city = $customer->getCity();
+        $zip = $customer->getZip();
+        $province = $customer->getProvince();
+        $gender = $customer->getGender();
+        $email = $customer->getEmail();
+        $username=$customer->getUsername();
+        $password = $customer->getPassword();
 
         $db = Databases::connectDB();
-        $query = "insert into tbl_customer (Firstname,Lastname,dob,address1,address2,city,zip,province,Gender,email,password) values (:fname, :lname, :dob, :address1, :address2, :city, :zip, :province, :gender, :email, :password)";
+        $query = "insert into tbl_customer (Firstname,Lastname,dob,address1,address2,city,zip,province,Gender,email,username,password) values (:fname, :lname, :dob, :address1, :address2, :city, :zip, :province, :gender, :email, :username, :password)";
         $stm = $db->prepare($query);
         $stm->bindParam(':fname', $fname, PDO::PARAM_STR, 30);
         $stm->bindParam(':lname', $lname, PDO::PARAM_STR, 30);
@@ -45,10 +46,11 @@ class Customer_DB {
         $stm->bindParam(':province', $province, PDO::PARAM_STR, 2);
         $stm->bindParam(':gender', $gender, PDO::PARAM_INT, 1);
         $stm->bindParam(':email', $email, PDO::PARAM_STR, 50);
+        $stm->bindParam(':username', $username, PDO::PARAM_STR, 50);
         $stm->bindParam(':password', $password, PDO::PARAM_STR, 50);
         $result = $stm->execute();
-        $lastid = $stm->lastInsertId();
-        return $lastid;
+        //$lastid = $stm->lastInsertId();
+        //return $lastid;
     }
 
     public static function updateCustomer($customer) {
@@ -63,6 +65,7 @@ class Customer_DB {
         $province = $customer->province;
         $gender = $customer->gender;
         $email = $customer->email;
+        $username = $customer->username;
         $password = $customer->password;
 
         $db = Databases::connectDB();
@@ -101,7 +104,7 @@ class Customer_DB {
         $stm->execute();
         $result = $stm->fetch();
 
-        $record = new Customer($result['customerid'], $result['firstname'], $result['lastname'], $result['dob'], $result['address1'], $result['address2'], $result['city'], $result['zip'], $result['province'], $result['gender'], $result['email'], $result['password'], $result['lastsignin']);
+        $record = new Customer($result['customerid'], $result['firstname'], $result['lastname'], $result['dob'], $result['address1'], $result['address2'], $result['city'], $result['zip'], $result['province'], $result['gender'], $result['email'], $result['username'], $result['password'], $result['lastsignin']);
     }
 
     public static function loginAction($email, $password) {
@@ -112,7 +115,7 @@ class Customer_DB {
         $stm->execute();
         $result = $stm->fetch();
 
-        $record = new Customer($result['customerid'], $result['firstname'], $result['lastname'], $result['dob'], $result['address1'], $result['address2'], $result['city'], $result['zip'], $result['province'], $result['gender'], $result['email'], $result['password'], $result['lastsignin']);
+        $record = new Customer($result['customerid'], $result['firstname'], $result['lastname'], $result['dob'], $result['address1'], $result['address2'], $result['city'], $result['zip'], $result['province'], $result['gender'], $result['email'], $result['username'], $result['password'], $result['lastsignin']);
     }
 
 }
