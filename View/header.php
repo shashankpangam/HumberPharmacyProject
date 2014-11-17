@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
         <link rel="stylesheet" type="text/css" href="../styles/style.css" />
+        <link rel="shortcut icon" href="../images/favicon.ico" >
         <script type="text/javascript" src="../Scripts/JScript.js"></script>
         <script type="text/javascript" src="../Scripts/javascriptFile.js"></script>
         <script src="../Scripts/jquery.slides.min.js" type="text/javascript"></script>

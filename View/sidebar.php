@@ -3,9 +3,9 @@
         <ul>
             <li><a href="productList.php?category=Medicines" name="category" value="Medicines">Medicines</a></li>
             <li><a href="productList.php?category=Vitamins" name="category" value="Vitamins">Vitamins</a></li>
-            <li><a href="productList.php?category=dietandfitness" name="category" value="dietandfitness">Diet and Fitness</a></li>
+            <li><a href="productList.php?category=DietandFitness" name="category" value="dietandfitness">Diet and Fitness</a></li>
             <li><a href="productList.php?category=Personal" name="category" value="Personal">Personal</a></li>
-            <li><a href="productSale.php?category=featuredprods" name="category" values="featuredprods">Featured Products</a></li>
+            <li><a href="productList.php?category=FeaturedProducts" name="category" values="FeaturedProducts">Featured Products</a></li>
             <li><a href="index.php">Checkout</a></li>
         </ul>
         <div id="cart">

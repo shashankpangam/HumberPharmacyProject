@@ -527,3 +527,43 @@ form.forgot_password{
     box-shadow: 0px 0px 2px #eaeaea inset;
     color: #222;
 }
+
+/*
+    Product Description Page ----- Shashank ------
+*/
+.productname
+{
+    font-size: 22px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #423E42;
+    margin: 0;
+    padding: 0;
+    text-rendering: optimizeeligibility;
+}
+.bigprice
+{
+    font-family: Helvetica, Arial Black, Arial, sans-serif;
+    font-weight: 900;
+    font-size: 23px;
+    line-height: 1.35;
+    color:#423E42;
+    float: right;
+}
+.instock
+{
+    float: right;
+    font-size: 17px;
+    color:#92A117;
+    font-weight: 400;
+}
+.outofstock
+{
+    float: right;
+    font-size: 17px;
+    color:#ff0000;
+    font-weight: 400;
+}
+/*
+    Product Description Page ----- Shashank ------
+*/

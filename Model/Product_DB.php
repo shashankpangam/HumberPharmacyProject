@@ -29,7 +29,7 @@ class Product_DB{
     
     public static function getProductByID($id){
             $db = Databases::connectDB();
-            $query = 'select * from tbl_product where id=:id';
+            $query = 'select * from tbl_product where productid=:id';
             $stm=$db->prepare($query);
             $stm->bindParam(':id',$id, PDO::PARAM_STR, 10);
             $stm->execute();
@@ -55,6 +55,32 @@ class Product_DB{
         
         $stm=$db->prepare($query);
         $stm->bindParam(':category',$category, PDO::PARAM_STR);
+        $stm->execute();
+        
+        $results=$stm->fetchAll();
+        $records = array();
+            foreach($results as $row)
+            {
+                $record = new Product($row['productid'],
+                        $row['name'],
+                        $row['description'],
+                        $row['symptoms'],
+                        $row['category'],
+                        $row['price'],
+                        $row['ondiscount'],
+                        $row['quantity'],
+                        $row['sold'],
+                        $row['images']);
+                
+                $records[]=$record;
+            }
+            return $records;
+    }
+    
+    public static function getProductByOffers(){
+        $db = Databases::connectDB();
+        $query='select a.* from tbl_product a join tbl_offers b  on a.productid=b.productid where date_add(b.dateadded, interval b.days day ) > now() ;';
+        $stm=$db->prepare($query);
         $stm->execute();
         
         $results=$stm->fetchAll();
