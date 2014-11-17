@@ -32,13 +32,8 @@ $names=array(
                 <div class="item center">
                     <a href="productDesc.php?<?php echo "ID=".$rows->getProductID();?>"><img src="<?php echo $rows->getProductImage()?>" width="190" height="192" /></a><br />
                     <p><a href="productDesc.php?<?php echo "ID=".$rows->getProductID();?>"><?php echo $rows->getProductName();?></a></p><span class="price"><?php echo $rows->getProductPrice();?></span><br />
-                <div class="item">
-                    <a href="productDesc.php?<?php echo "ID=".$rows->getProductID();?>"><img src="<?php echo $rows->getProductImage()?>" width="213" height="192" /></a><br />
-                    <p><a href="productDesc.php?<?php echo "ID=".$rows->getProductID();?>"><?php echo $rows->getProductName();?></a></p><span class="price">$<?php echo $rows->getProductPrice();?></span><br />
-                    
                 </div>
-                    <?php endforeach; ?>
-            </div>
+                <?php endforeach; ?>
         </div>
     </div>
 </div>
