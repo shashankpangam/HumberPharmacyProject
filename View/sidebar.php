@@ -1,11 +1,11 @@
 <div id="sidebar">
     <div id="navigation">
         <ul>
-            <li><a href="productList.php?category=Medicines" name="category" value="Medicines">Medicines</a></li>
-            <li><a href="productList.php?category=Vitamins" name="category" value="Vitamins">Vitamins</a></li>
-            <li><a href="productList.php?category=DietandFitness" name="category" value="dietandfitness">Diet and Fitness</a></li>
-            <li><a href="productList.php?category=Personal" name="category" value="Personal">Personal</a></li>
-            <li><a href="productList.php?category=FeaturedProducts" name="category" values="FeaturedProducts">Featured Products</a></li>
+            <li><a href="productList.php?category=Medicines&min=0&max=6" name="category" value="Medicines">Medicines</a></li>
+            <li><a href="productList.php?category=Vitamins&min=0&max=6" name="category" value="Vitamins">Vitamins</a></li>
+            <li><a href="productList.php?category=DietandFitness&min=0&max=6" name="category" value="dietandfitness">Diet and Fitness</a></li>
+            <li><a href="productList.php?category=Personal&min=0&max=6" name="category" value="Personal">Personal</a></li>
+            <li><a href="productList.php?category=FeaturedProducts&min=0&max=6" name="category" values="FeaturedProducts">Featured Products</a></li>
             <li><a href="index.php">Checkout</a></li>
         </ul>
         <div id="cart">

@@ -1,32 +1,36 @@
-<!--<div class="transperent"></div>-->
-
 <?php
 session_start();
 $error_message = $username = $password = "";
 require_once '../Model/Customer.php';
 require_once '../Model/Customer_DB.php';
 
-
-
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
-    $password = $_POST['password'];  
-      
+    $password = $_POST['password'];
+
     if ($username != '' && $password != '') {
         $db = Databases::connectDB();
-        $query ="select * from tbl_customer where username='" . $username . "' and password='" . $password . "'";
-        $res = $db->query($query);
-        
-        if($res){
-            $_SESSION['username'] = $username;
-            header('location:welcome.php');
-        }else {
-            echo'You entered username or password is incorrect';
+        $stmt = $db->prepare("SELECT * FROM tbl_customer WHERE username=? AND password=?");
+        $stmt->bindParam(1, $username);
+        $stmt->bindParam(2, $password);
+
+        if ($stmt->execute()) {
+            // get the rowcount
+            $numrows = $stmt->rowCount();
+            if ($numrows > 0) {
+                // match
+                // Fetch rows
+                $_SESSION['username'] = $username;
+                header('location:welcome.php');
+                $rowset = $stmt->fetchAll();
+            } else {
+                // no rows
+                echo'You entered username or password is incorrect';
+            }
         }
     } else {
         echo'Enter both username and password';
     }
-
 }
 ?>
 

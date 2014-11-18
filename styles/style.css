@@ -538,11 +538,22 @@ form.forgot_password{
     box-shadow: 0px 0px 2px #eaeaea inset;
     color: #222;
 }
+//pagination Number CSS
+.pager{
+    padding: 5px;
+    margin: 5px;
+    font-weight: bold;
+    color: #EEEEEE;
+    background: #1d1d1d;
+    text-decoration: none;
+    text-align: center;
+    
+}
 
 /*
     Product Description Page ----- Shashank ------
 */
-.productname
+/*.productname
 {
     font-size: 22px;
     line-height: 1.35;
@@ -574,7 +585,10 @@ form.forgot_password{
     font-size: 17px;
     color:#ff0000;
     font-weight: 400;
-}
+}*/
 /*
     Product Description Page ----- Shashank ------
 */
+
+
+

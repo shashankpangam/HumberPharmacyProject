@@ -27,6 +27,10 @@ class Product_DB{
             return $records;
     }
     
+    public static function getProductCountByCategory($category){
+       
+        return 42;
+    }
     public static function getProductByID($id){
             $db = Databases::connectDB();
             $query = 'select * from tbl_product where productid=:id';
@@ -49,12 +53,15 @@ class Product_DB{
             return $record;
     }
     
-    public static function getProductByCategory($category){
+    public static function getProductByCategory($category, $min, $max){
         $db = Databases::connectDB();
-        $query='select * from tbl_product where category=:category';
+        $db->setAttribute( PDO::ATTR_EMULATE_PREPARES, false );
+        $query='select * from tbl_product where category=? LIMIT ?, ?';
         
         $stm=$db->prepare($query);
-        $stm->bindParam(':category',$category, PDO::PARAM_STR);
+        $stm->bindParam(1,$category, PDO::PARAM_STR);
+         $stm->bindParam(2,$min);
+          $stm->bindParam(3,$max);
         $stm->execute();
         
         $results=$stm->fetchAll();
