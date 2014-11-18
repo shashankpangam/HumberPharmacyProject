@@ -8,10 +8,20 @@
             <li><a href="productList.php?category=FeaturedProducts&min=0&max=6" name="category" values="FeaturedProducts">Featured Products</a></li>
             <li><a href="index.php">Checkout</a></li>
         </ul>
-        <div id="cart">
-            <strong>Shopping cart:</strong> <br /> 0 items
-        </div>
+        
     </div>
+    <div id="cart">
+            <?php 
+                if(isset($_SESSION["products"]))
+                {
+                    $items = count($_SESSION["products"]);
+                }
+ else {
+     $items = 0;
+ }
+            ?>
+            <a href="viewCart.php"><strong>Shopping cart:</strong> <br /> <?php echo $items?> items</a>
+        </div>
     <div>
         <img src="../images/title2.gif" alt="" width="233" height="41" /><br />																																																																																																																																																															
         <div class="review">

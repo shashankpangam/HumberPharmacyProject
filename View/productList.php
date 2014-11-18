@@ -12,6 +12,7 @@ $names = array(
     "Personal" => "Personal",
     "FeaturedProducts" => "Featured Products"
 );
+session_start();
 ?>
 <div id="content">
     <?php require_once './sidebar.php'; ?>
@@ -22,6 +23,7 @@ $names = array(
             </div>
             <div id="items">
                 <?php
+<<<<<<< HEAD
                 if ($category == "FeaturedProducts") {
                     $records = Product_DB::getProductByOffers();
                 } else {
@@ -75,6 +77,24 @@ for ($x = 1; $x <= $pager_size; $x++) {
 ?> 
 
             </div>
+=======
+                    if($request=="FeaturedProducts")
+                    {
+                        $records=  Product_DB::getProductByOffers();
+                    }
+                    else
+                    {
+                        $records = Product_DB::getProductByCategory($request);
+                    }
+                    foreach($records as $rows) :
+                ?>
+                <div class="item center">
+                    <a class="productname" href="productDesc.php?<?php echo "ID=".$rows->getProductID();?>"><?php echo $rows->getProductName();?></a>
+                    <a href="productDesc.php?<?php echo "ID=".$rows->getProductID();?>"><img src="<?php echo $rows->getProductImage()?>" width="170" height="170" /></a><br />
+                    <span class="price">$<?php echo $rows->getProductPrice();?></span><br />
+                </div>
+                <?php endforeach; ?>
+>>>>>>> cce529a08d4515ac7993d2b84690912be404f979
         </div>
     </div>
 <?php
