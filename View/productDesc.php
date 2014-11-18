@@ -2,14 +2,20 @@
 require_once './header.php';
 require_once '../Model/Product_DB.php';
 $request = $_GET['ID'];
+$current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+session_start();
 ?>
 <div id="content">
     <?php require_once './sidebar.php'; ?>
     <div id="main">
         <div id="inside">
+            <form method="post" action="../Model/ShoppingCart.php"> 
             <?php
                 $item=Product_DB::getProductByID($request);
             ?>
+                <input type="hidden" name="product_id" value="<?php echo $item->getProductID();?>"/>
+                <input type="hidden" name="type" value="add" />
+                <input type="hidden" name="return_url" value="<?php echo $current_url ?>" />
             <label class="productname"><?php echo $item->getProductName()?></label><span class="bigprice">$<?php echo $item->getProductPrice();?></span><br/>
             <label class="<?php
                 $instock = $item->getProductQuantity();
@@ -26,6 +32,17 @@ $request = $_GET['ID'];
                         echo "Out Of Stock";
                 ?>
             </label><br/>
+            <label>Quantity</label>
+                <select name="product_qty">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            <button class="add_to_cart">Add To Cart</button>
+            <br/>
+            
             <label>Best For:</label>
             <ul>
                 <?php 
@@ -43,6 +60,7 @@ $request = $_GET['ID'];
             <p><?php
                 echo $item->getProductDescription();
             ?></p>
+            </form>
         </div>
     </div>
 </div>

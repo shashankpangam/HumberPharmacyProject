@@ -75,7 +75,7 @@ body{
 
 }
 #navigation{
-    background-color:#92A117;
+    background-color: #92A117;
     background-image:url(images/sidebar_bg.jpg);
     background-position:top left;
     background-repeat:no-repeat;
@@ -112,6 +112,7 @@ body{
     background-image:url(../images/cart_bg.jpg);
     background-position:top left;
     background-repeat:no-repeat;
+    background-color: #92A117;
 }
 .categories{
     border:1px solid #BBBBBB;
@@ -148,12 +149,12 @@ body{
 }
 .review a, .item a{
     font-family:Arial, Helvetica, sans-serif;
-    font-size:12px;
+    font-size:15px;
     color:#4B4B4B;
-    text-decoration:underline;
     font-weight:bold;
+    text-decoration: none;
 }
-.review a:visited, .item a:visited{text-decoration:underline}
+.review a:visited {text-decoration:underline}
 .review a:hover, .item a:hover{text-decoration:none}
 .review p{
     padding:10px 32px 13px 0;
@@ -195,15 +196,17 @@ body{
 }
 .saleprodheader{
     padding: 5px 0px 0px 5px;
+    font-size: 25px;
+    font-weight: 500;
 }
 #items{
     float:left;
     padding-top: 20px;
 }
 .item{
-    width:190px;
-    border:1px solid #BBBBBB;
-    margin:10px 0 0 0;
+    width:200px;
+    height: 220px;
+    margin:10px;
     float:left;
 }
 .item p{
@@ -217,7 +220,7 @@ body{
 .price{
     display:block;
     width:54px;
-    float:left;
+    float:right;
     background-color:#3792AE;
     text-align:center;
     font-size:12px;
@@ -575,6 +578,12 @@ form.forgot_password{
     color:#ff0000;
     font-weight: 400;
 }
+#cartname
+{
+    font-size:12px;
+    font-weight: 500;
+}
 /*
     Product Description Page ----- Shashank ------
 */
+

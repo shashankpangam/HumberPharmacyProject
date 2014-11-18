@@ -9,6 +9,7 @@ $names=array(
     "Personal" => "Personal",
     "FeaturedProducts" => "Featured Products"
 );
+session_start();
 ?>
 <div id="content">
     <?php require_once './sidebar.php'; ?>
@@ -30,8 +31,9 @@ $names=array(
                     foreach($records as $rows) :
                 ?>
                 <div class="item center">
-                    <a href="productDesc.php?<?php echo "ID=".$rows->getProductID();?>"><img src="<?php echo $rows->getProductImage()?>" width="190" height="192" /></a><br />
-                    <p><a href="productDesc.php?<?php echo "ID=".$rows->getProductID();?>"><?php echo $rows->getProductName();?></a></p><span class="price"><?php echo $rows->getProductPrice();?></span><br />
+                    <a class="productname" href="productDesc.php?<?php echo "ID=".$rows->getProductID();?>"><?php echo $rows->getProductName();?></a>
+                    <a href="productDesc.php?<?php echo "ID=".$rows->getProductID();?>"><img src="<?php echo $rows->getProductImage()?>" width="170" height="170" /></a><br />
+                    <span class="price">$<?php echo $rows->getProductPrice();?></span><br />
                 </div>
                 <?php endforeach; ?>
         </div>
