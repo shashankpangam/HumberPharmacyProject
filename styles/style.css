@@ -556,7 +556,7 @@ form.forgot_password{
 /*
     Product Description Page ----- Shashank ------
 */
-/*.productname
+.productname
 {
     font-size: 22px;
     line-height: 1.35;
@@ -588,22 +588,12 @@ form.forgot_password{
     font-size: 17px;
     color:#ff0000;
     font-weight: 400;
-<<<<<<< HEAD
-}*/
-=======
 }
 #cartname
 {
     font-size:12px;
     font-weight: 500;
 }
->>>>>>> cce529a08d4515ac7993d2b84690912be404f979
 /*
     Product Description Page ----- Shashank ------
 */
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> cce529a08d4515ac7993d2b84690912be404f979

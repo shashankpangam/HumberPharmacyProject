@@ -23,7 +23,6 @@ session_start();
             </div>
             <div id="items">
                 <?php
-<<<<<<< HEAD
                 if ($category == "FeaturedProducts") {
                     $records = Product_DB::getProductByOffers();
                 } else {
@@ -35,68 +34,51 @@ session_start();
                         <a href="productDesc.php?<?php echo "ID=" . $rows->getProductID(); ?>"><img src="<?php echo $rows->getProductImage() ?>" width="190" height="192" /></a><br />
                         <p><a href="productDesc.php?<?php echo "ID=" . $rows->getProductID(); ?>"><?php echo $rows->getProductName(); ?></a></p><span class="price"><?php echo $rows->getProductPrice(); ?></span><br />
                     </div>
-<?php endforeach; ?>
+                <?php endforeach; ?>
 
-<?php
-$product_count = Product_DB::getProductCountByCategory($category);
-$pager_size = round($product_count / 6);
-for ($x = 1; $x <= $pager_size; $x++) {
-    switch ($x) {
-        case 1:
-            $min = 0;
-            $max = 6;
-            break;
-        case 2:
-            $min = 7;
-            $max = 6;
-            break;
-        case 3:
-            $min = 13;
-            $max = 6;
-            break;
-        case 4:
-            $min = 19;
-            $max = 6;
-            break;
-        case 5:
-            $min = 25;
-            $max = 6;
-            break;
-        case 6:
-            $min = 31;
-            $max = 6;
-            break;
-        case 7:
-            $min = 37;
-            $max = 6;
-            break;
-    }
-    
-   echo '<a class="pager" href="productList.php?category='.$category.'&min='.$min.'&max='.$max.'">'.$x.'</a>';
-}
-?> 
+                <?php
+                $product_count = Product_DB::getProductCountByCategory($category);
+                $pager_size = round($product_count / 6);
+                for ($x = 1; $x <= $pager_size; $x++) {
+                    switch ($x) {
+                        case 1:
+                            $min = 0;
+                            $max = 6;
+                            break;
+                        case 2:
+                            $min = 7;
+                            $max = 6;
+                            break;
+                        case 3:
+                            $min = 13;
+                            $max = 6;
+                            break;
+                        case 4:
+                            $min = 19;
+                            $max = 6;
+                            break;
+                        case 5:
+                            $min = 25;
+                            $max = 6;
+                            break;
+                        case 6:
+                            $min = 31;
+                            $max = 6;
+                            break;
+                        case 7:
+                            $min = 37;
+                            $max = 6;
+                            break;
+                    }
+
+                    echo '<a class="pager" href="productList.php?category=' . $category . '&min=' . $min . '&max=' . $max . '">' . $x . '</a>';
+                }
+                ?> 
 
             </div>
-=======
-                    if($request=="FeaturedProducts")
-                    {
-                        $records=  Product_DB::getProductByOffers();
-                    }
-                    else
-                    {
-                        $records = Product_DB::getProductByCategory($request);
-                    }
-                    foreach($records as $rows) :
-                ?>
-                <div class="item center">
-                    <a class="productname" href="productDesc.php?<?php echo "ID=".$rows->getProductID();?>"><?php echo $rows->getProductName();?></a>
-                    <a href="productDesc.php?<?php echo "ID=".$rows->getProductID();?>"><img src="<?php echo $rows->getProductImage()?>" width="170" height="170" /></a><br />
-                    <span class="price">$<?php echo $rows->getProductPrice();?></span><br />
-                </div>
-                <?php endforeach; ?>
->>>>>>> cce529a08d4515ac7993d2b84690912be404f979
         </div>
     </div>
+</div>
 <?php
 require_once './footer.php';
 ?>
