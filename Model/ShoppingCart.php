@@ -30,7 +30,7 @@ if(isset($_POST["type"]) && $_POST["type"]=='add')
 	if ($result) { //we have the product info 
 		
 		//prepare array for the session variable
-		$new_product = array(array('name'=>$result->getProductName(), 'code'=>$result->getProductID(), 'price'=>$result->getProductPrice()));
+		$new_product = array(array('name'=>$result->getProductName(), 'code'=>$result->getProductID(), 'qty'=>$product_qty, 'price'=>$result->getProductPrice()));
 		
 		if(isset($_SESSION["products"])) //if we have the session
 		{
