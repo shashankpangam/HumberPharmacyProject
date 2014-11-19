@@ -30,9 +30,9 @@ session_start();
                 }
                 foreach ($records as $rows) :
                     ?>
-                    <div class="item center">
+                    <div class="item center" style="height:260px;">
                         <a href="productDesc.php?<?php echo "ID=" . $rows->getProductID(); ?>"><img src="<?php echo $rows->getProductImage() ?>" width="190" height="192" /></a><br />
-                        <p><a href="productDesc.php?<?php echo "ID=" . $rows->getProductID(); ?>"><?php echo $rows->getProductName(); ?></a></p><span class="price"><?php echo $rows->getProductPrice(); ?></span><br />
+                        <p style="float:left;"><a href="productDesc.php?<?php echo "ID=" . $rows->getProductID(); ?>"><?php echo $rows->getProductName(); ?></a></p><span class="price">$<?php echo $rows->getProductPrice(); ?></span><br />
                     </div>
                 <?php endforeach; ?>
 
@@ -71,7 +71,8 @@ session_start();
                             break;
                     }
 
-                    echo '<a class="pager" href="productList.php?category=' . $category . '&min=' . $min . '&max=' . $max . '">' . $x . '</a>';
+                    echo '<span style="float:bottom;"><a id="pager" style="padding:5px; margin:5px; color:#FFFFFF; background:#3792AE;text-decoration: none;text-align: center;position: relative;" '
+                    . 'href="productList.php?category=' . $category . '&min=' . $min . '&max=' . $max . '">' . $x . '</a></span>';
                 }
                 ?> 
 

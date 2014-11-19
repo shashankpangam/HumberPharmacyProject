@@ -80,6 +80,7 @@ session_start();
                     <input type="hidden" name="product_id" value="<?php echo $item->getProductID(); ?>"/>
                     <input type="hidden" name="type" value="add" />
                     <input type="hidden" name="return_url" value="<?php echo $current_url ?>" />
+            </form>
             </div>
         </div>
     </div>

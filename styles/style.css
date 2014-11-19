@@ -219,15 +219,18 @@ body{
 }
 .price{
     display:block;
-    width:54px;
+    width:40px;
     float:right;
     background-color:#3792AE;
     text-align:center;
     font-size:12px;
     font-family:Arial, Helvetica, sans-serif;
     color:#FFFFFF;
-    font-weight:bold;
+    /*font-weight:bold;*/
     line-height:23px;
+/*    position: relation;
+    bottom:40px;*/
+
 }
 .center{
     margin:10px 10px 0 10px;
@@ -542,7 +545,7 @@ form.forgot_password{
     color: #222;
 }
 //pagination Number CSS
-.pager{
+#pager{
     padding: 5px;
     margin: 5px;
     font-weight: bold;
@@ -550,13 +553,14 @@ form.forgot_password{
     background: #1d1d1d;
     text-decoration: none;
     text-align: center;
-    
+    position: relative;
+    float:right;
 }
 
 /*
     Product Description Page ----- Shashank ------
 */
-.productname
+/*.productname
 {
     font-size: 22px;
     line-height: 1.35;
@@ -593,7 +597,7 @@ form.forgot_password{
 {
     font-size:12px;
     font-weight: 500;
-}
+}*/
 /*
     Product Description Page ----- Shashank ------
 */
