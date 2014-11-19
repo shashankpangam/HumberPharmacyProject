@@ -3,14 +3,14 @@ class Offer {
     private $offerid;
     private $productid;
     private $discountrate;
-    private $dateAdded;
+    private $dateadded;
     private $days;
     
     public function __construct($id,$productid,$discountrate,$dateadded,$days) {
         $this->offerid=$id;
         $this->productid=$productid;
         $this->discountrate=$discountrate;
-        $this->dateAdded=$dateadded;
+        $this->dateadded=$dateadded;
         $this->days=$days;
     }
     
@@ -28,7 +28,7 @@ class Offer {
     }
     public function getDateAdded()
     {
-        return $this->dateAdded;
+        return $this->dateadded;
     }
     public function getDaysActive()
     {
