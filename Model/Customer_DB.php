@@ -97,34 +97,41 @@ class Customer_DB {
         return $result;
     }
 
-    public static function getCustomerByID($customerID) {
+    public static function getCustomerByID($id) {
         $db = Databases::connectDB();
-        $sql = 'select * from tbl_customer where customerid=:customerid';
-        $stm->bindParam(':customerid', $customerid, PDO::PARAM_STR, 10);
-        $stm->execute();
-        $result = $stm->fetch();
+            $query = 'select * from tbl_customer where customerid=:customerid';
+            $stm=$db->prepare($query);
+            $stm->bindParam(':customerid',$id, PDO::PARAM_STR, 10);
+            $stm->execute();
+            $result=$stm->fetch();
 
+            if($result==null)
+                $record=null;
+            else
         $record = new Customer($result['customerid'], $result['firstname'], $result['lastname'], $result['dob'], $result['address1'], $result['address2'], $result['city'], $result['zip'], $result['province'], $result['gender'], $result['email'], $result['username'], $result['password'], $result['lastsignin']);
-        
+
         return $record;
     }
 
     public static function loginAction($username, $password) {
         $db = Databases::connectDB();
-        $sql = 'select * from tbl_customer where username=:username and password=:password';
-        $stm=$db->prepare($sql);
-        $stm->bindParam(':username', $email, PDO::PARAM_STR, 50);
+        $query = 'select * from tbl_customer where username=:username and password=:password';
+        $stm = $db->prepare($query);
+        $stm->bindParam(':username', $username, PDO::PARAM_STR, 50);
         $stm->bindParam(':password', $password, PDO::PARAM_STR, 50);
         $stm->execute();
         $result = $stm->fetch();
 
         if ($result == null) {
             $record = null;
+            $id = null;
         } else {
             $record = new Customer($result['customerid'], $result['firstname'], $result['lastname'], $result['dob'], $result['address1'], $result['address2'], $result['city'], $result['zip'], $result['province'], $result['gender'], $result['email'], $result['username'], $result['password'], $result['lastsignin']);
+            $id=$record->getID();
         }
-        return $record;
+        return $id;
     }
+    
 
 }
 ?>

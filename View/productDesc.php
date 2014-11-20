@@ -74,7 +74,7 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                    <button class="add_to_cart" style="width:90px;height: 30px">Add To Cart</button>
+                    <button class="btnsubmit" style="width:90px;height: 30px">Add To Cart</button>
                     <input type="hidden" name="product_id" value="<?php echo $item->getProductID(); ?>">
                     <input type="hidden" name="type" value="add" >
                     <input type="hidden" name="return_url" value="<?php echo $current_url ?>" >

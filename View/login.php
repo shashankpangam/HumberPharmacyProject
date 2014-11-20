@@ -8,22 +8,12 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
 
     if ($username != '' && $password != '') {
-//        $db = Databases::connectDB();
-//        $stmt = $db->prepare("SELECT * FROM tbl_customer WHERE username=? AND password=?");
-//        $stmt->bindParam(1, $username);
-//        $stmt->bindParam(2, $password);
-        $customer = Customer_DB::loginAction($username, $password);
+        $customerid = Customer_DB::loginAction($username, $password);
 
-        if ($customer == null) {
-            
+        if ($customerid == null) {
             $error_message = '*The username or password you entered is incorrect';
-
-//            $rowset = $stmt->fetchAll();
         } else {
-// no rows
-            
-            $_SESSION['username'] = $customer;
-            var_dump($_SESSION['username']);
+            $_SESSION["customer"] = $customerid;
             header('location:index.php');
         }
     }

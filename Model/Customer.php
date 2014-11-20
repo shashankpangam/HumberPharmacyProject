@@ -13,9 +13,10 @@
         private $email;
         private $username;
         private $password;
+        private $lastsignin;
         
-        public function __construct($fname,$lname,$dob,$address1,$address2,$city,$zip,$province,$gender,$email,$username,$password) {
-            #$this->id=$id;
+        public function __construct($id,$fname,$lname,$dob,$address1,$address2,$city,$zip,$province,$gender,$email,$username,$password,$lastsignin) {
+            $this->id=$id;
             $this->fname=$fname;
             $this->lname=$lname;
             $this->dob=$dob;
@@ -28,6 +29,7 @@
             $this->gender=$gender;
             $this->username=$username;
             $this->password=$password;
+            $this->lastsignin=$lastsignin;
         }
         
         public function getID()
@@ -127,8 +129,14 @@
         {
             $this->password=$password;
         }
-        
-        
+        public function getLastSign()
+        {
+            return $this->lastsignin;
+        }
+        public function setLastSignIn($last)
+        {
+            $this->lastsignin=$last;
+        }      
     }
 ?>
 
