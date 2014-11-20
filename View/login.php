@@ -23,7 +23,6 @@ if (isset($_POST['submit'])) {
 ?>
 
 
-
 <div id="content">
     <?php require_once './sidebar.php'; ?>
     <div class="contactform">
