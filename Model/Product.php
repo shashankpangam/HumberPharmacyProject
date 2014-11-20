@@ -66,7 +66,8 @@ class Product{
     
     public function getProductPrice()
     {
-        return $this->price;
+        $price=  number_format($this->price,2);
+        return $price;
     }
     public function setProductPrice($price)
     {

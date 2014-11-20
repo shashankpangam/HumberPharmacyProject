@@ -70,7 +70,7 @@ $names = array(
                             break;
                     }
 
-                    echo '<span style="float:bottom;"><a id="pager" style="padding:5px; margin:5px; color:#FFFFFF; background:#3792AE;text-decoration: none;text-align: center;position: relative;" '
+                    echo '<span style="padding-top:20px;"><a id="pager" style="padding:5px; margin:5px; color:#FFFFFF; background:#3792AE;text-decoration: none;text-align: center;" '
                     . 'href="productList.php?category=' . $category . '&min=' . $min . '&max=' . $max . '">' . $x . '</a></span>';
                 }
                 ?> 

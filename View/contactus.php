@@ -36,13 +36,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $gender = test_input($_POST["gender"]);
     }
 }
-//
-//function test_input($data) {
-//    $data = trim($data);
-//    $data = stripslashes($data);
-//    $data = htmlspecialchars($data);
-//    return $data;
-//}
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
+<?php
+
 ?>
 
 <?php require_once './header.php'; ?>
