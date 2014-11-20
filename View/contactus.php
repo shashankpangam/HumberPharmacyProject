@@ -5,22 +5,22 @@ $name = $email = $gender = $comment = $website = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
-        $nameErr = "Name is required";
+        $nameErr = "*Name is required";
     } else {
         $name = test_input($_POST["name"]);
         // check if name only contains letters and whitespace
         if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
-            $nameErr = "Only letters and white space allowed";
+            $nameErr = "*Only letters and white space allowed";
         }
     }
 
     if (empty($_POST["email"])) {
-        $emailErr = "Email is required";
+        $emailErr = "*Email is required";
     } else {
         $email = test_input($_POST["email"]);
         // check if e-mail address is well-formed
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $emailErr = "Invalid email format";
+            $emailErr = "*Invalid email format";
         }
     }
 
@@ -31,18 +31,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($_POST["gender"])) {
-        $genderErr = "Gender is required";
+        $genderErr = "*Gender is required";
     } else {
         $gender = test_input($_POST["gender"]);
     }
 }
-
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+//
+//function test_input($data) {
+//    $data = trim($data);
+//    $data = stripslashes($data);
+//    $data = htmlspecialchars($data);
+//    return $data;
+//}
 ?>
 
 <?php require_once './header.php'; ?>
@@ -53,7 +53,7 @@ function test_input($data) {
         <p class="txtcontus"><font color="white"><strong>Contact Us</strong></font></p><br />
         <form method="post" action="#"> 
             <fieldset class="contusfs" style="width:405px;height: 270px;">
-                <div style="padding:13px 0px 10px 20px">
+                <div style="padding:15px 0px 10px 20px">
                     Name<span class="error">*: <input type="text" name="name">
                         <?php echo $nameErr; ?></span>
                     <br><br>           
@@ -75,7 +75,6 @@ function test_input($data) {
                 </div>
             </fieldset>
         </form>
-
     </div> 
 </div>
 <?php require_once './footer.php'; ?>

@@ -12,7 +12,6 @@ $names = array(
     "Personal" => "Personal",
     "FeaturedProducts" => "Featured Products"
 );
-session_start();
 ?>
 <div id="content">
     <?php require_once './sidebar.php'; ?>

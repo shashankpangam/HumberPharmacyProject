@@ -1,4 +1,6 @@
-<?php ?>
+<?php
+session_start();
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -56,7 +58,17 @@
         <div id="header">
             <a href="index.php"><img src="../images/logo.png" width="237" height="123" class="float" alt="setalpm" /></a>																																																																	
             <div class="topnav">
-                <span><strong>Welcome</strong> &nbsp;<a href="login.php">Log in</a> &nbsp; | &nbsp; <a href="register.php">Register</a></span>             
+                <?php if (empty($_SESSION['username'])) { ?>
+                    <span><strong>Welcome</strong> &nbsp;<a href="login.php">Log in</a> &nbsp; | &nbsp; <a href="register.php">Register</a></span>
+                    <?php
+                    } else {
+                    $username = $_SESSION['username'];
+                    $user_name = strtoupper($username);
+                    ?>
+                    <span><strong>Welcome:</strong> &nbsp;<?php echo $user_name; ?>&nbsp; | &nbsp;<?php echo'<a href="signout.php">Sign out</a>'; ?></span>
+                    <?php }
+                    ?>
+
             </div>
             <ul id="menu">
                 <li><a href="index.php"><img src="../images/but1.gif" alt="Home Page" width="110" height="32" /></a></li>

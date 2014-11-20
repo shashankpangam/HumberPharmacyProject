@@ -109,7 +109,7 @@ body{
     line-height:16px;
     margin:65px 0 0 0;
     padding:9px 0 0 50px;
-    background-image:url(../images/cart_bg.jpg);
+    /*background-image:url(../images/cart_bg.jpg);*/
     background-position:top left;
     background-repeat:no-repeat;
     background-color: #92A117;
@@ -556,48 +556,3 @@ form.forgot_password{
     position: relative;
     float:right;
 }
-
-/*
-    Product Description Page ----- Shashank ------
-*/
-/*.productname
-{
-    font-size: 22px;
-    line-height: 1.35;
-    font-weight: 700;
-    color: #423E42;
-    margin: 0;
-    padding: 0;
-    text-rendering: optimizeeligibility;
-}
-.bigprice
-{
-    font-family: Helvetica, Arial Black, Arial, sans-serif;
-    font-weight: 900;
-    font-size: 23px;
-    line-height: 1.35;
-    color:#423E42;
-    float: right;
-}
-.instock
-{
-    float: right;
-    font-size: 17px;
-    color:#92A117;
-    font-weight: 400;
-}
-.outofstock
-{
-    float: right;
-    font-size: 17px;
-    color:#ff0000;
-    font-weight: 400;
-}
-#cartname
-{
-    font-size:12px;
-    font-weight: 500;
-}*/
-/*
-    Product Description Page ----- Shashank ------
-*/

@@ -1,7 +1,6 @@
+<?php require_once './header.php'; ?>
 <?php
-session_start();
 $error_message = $username = $password = "";
-require_once '../Model/Customer.php';
 require_once '../Model/Customer_DB.php';
 
 if (isset($_POST['submit'])) {
@@ -9,42 +8,41 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
 
     if ($username != '' && $password != '') {
-        $db = Databases::connectDB();
-        $stmt = $db->prepare("SELECT * FROM tbl_customer WHERE username=? AND password=?");
-        $stmt->bindParam(1, $username);
-        $stmt->bindParam(2, $password);
+//        $db = Databases::connectDB();
+//        $stmt = $db->prepare("SELECT * FROM tbl_customer WHERE username=? AND password=?");
+//        $stmt->bindParam(1, $username);
+//        $stmt->bindParam(2, $password);
+        $customer = Customer_DB::loginAction($username, $password);
 
-        if ($stmt->execute()) {
-            // get the rowcount
-            $numrows = $stmt->rowCount();
-            if ($numrows > 0) {
-                // match
-                // Fetch rows
-                $_SESSION['username'] = $username;
-                header('location:welcome.php');
-                $rowset = $stmt->fetchAll();
-            } else {
-                // no rows
-                echo'You entered username or password is incorrect';
-            }
+        if ($customer == null) {
+            
+            $error_message = '*The username or password you entered is incorrect';
+
+//            $rowset = $stmt->fetchAll();
+        } else {
+// no rows
+            
+            $_SESSION['username'] = $customer;
+            var_dump($_SESSION['username']);
+            header('location:index.php');
         }
-    } else {
-        echo'Enter both username and password';
     }
+} else {
+    $error_message = '*Both username and password is required';
 }
 ?>
 
 
-<?php require_once './header.php'; ?>
-<div id="content">
-<?php require_once './sidebar.php'; ?>
-    <div class="contactform">
 
+<div id="content">
+    <?php require_once './sidebar.php'; ?>
+    <div class="contactform">
+        <input type="hidden" name="customer" value="<?php echo $customer; ?>" />
         <p class="txtcontus" style="width: 360px"><font color="white"><strong>Customer Login</strong></font></p><br />
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"> 
 
             <fieldset class="contusfs" style="height: 220px">
-                <font color="red"><p style="padding-left: 25px;"><?php echo $error_message; ?></p></font>
+                <font color="red"><p style="padding-left: 20px;padding-top: 9px;"><?php echo $error_message; ?></p></font>
                 <div class="slide">
                     <table style="width:80%" cellspacing="15">
                         <tr>

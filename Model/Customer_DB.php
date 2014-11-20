@@ -12,14 +12,14 @@ class Customer_DB {
 
         $records = array();
         foreach ($results as $row) {
-            $record = new Customer($row['customerid'], $row['firstname'], $row['lastname'], $row['dob'], $row['address1'], $row['address2'], $row['city'], $row['zip'], $row['province'], $row['gender'], $row['email'],$row['username'], $row['password'], $row['lastsignin']);
+            $record = new Customer($row['customerid'], $row['firstname'], $row['lastname'], $row['dob'], $row['address1'], $row['address2'], $row['city'], $row['zip'], $row['province'], $row['gender'], $row['email'], $row['username'], $row['password'], $row['lastsignin']);
 
             $records[] = $record;
         }
         return $records;
     }
 
-    public static function insertCustomer($customer) {       
+    public static function insertCustomer($customer) {
         $fname = $customer->getFname();
         $lname = $customer->getLname();
         $dob = $customer->getDOB();
@@ -30,7 +30,7 @@ class Customer_DB {
         $province = $customer->getProvince();
         $gender = $customer->getGender();
         $email = $customer->getEmail();
-        $username=$customer->getUsername();
+        $username = $customer->getUsername();
         $password = $customer->getPassword();
 
         $db = Databases::connectDB();
@@ -105,17 +105,25 @@ class Customer_DB {
         $result = $stm->fetch();
 
         $record = new Customer($result['customerid'], $result['firstname'], $result['lastname'], $result['dob'], $result['address1'], $result['address2'], $result['city'], $result['zip'], $result['province'], $result['gender'], $result['email'], $result['username'], $result['password'], $result['lastsignin']);
+        
+        return $record;
     }
 
-    public static function loginAction($email, $password) {
+    public static function loginAction($username, $password) {
         $db = Databases::connectDB();
-        $sql = 'select * from tbl_customer where email=:email and password=:password';
-        $stm->bindParam(':email', $email, PDO::PARAM_STR, 50);
+        $sql = 'select * from tbl_customer where username=:username and password=:password';
+        $stm=$db->prepare($sql);
+        $stm->bindParam(':username', $email, PDO::PARAM_STR, 50);
         $stm->bindParam(':password', $password, PDO::PARAM_STR, 50);
         $stm->execute();
         $result = $stm->fetch();
 
-        $record = new Customer($result['customerid'], $result['firstname'], $result['lastname'], $result['dob'], $result['address1'], $result['address2'], $result['city'], $result['zip'], $result['province'], $result['gender'], $result['email'], $result['username'], $result['password'], $result['lastsignin']);
+        if ($result == null) {
+            $record = null;
+        } else {
+            $record = new Customer($result['customerid'], $result['firstname'], $result['lastname'], $result['dob'], $result['address1'], $result['address2'], $result['city'], $result['zip'], $result['province'], $result['gender'], $result['email'], $result['username'], $result['password'], $result['lastsignin']);
+        }
+        return $record;
     }
 
 }
