@@ -24,6 +24,7 @@ if (isset($_POST['submit'])) {
     $eemail = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $id=null;
     
     if(empty($firstname) || empty($lastname) || empty($dob)){
     $error_message = "*One or more required fields are blank.";
@@ -39,7 +40,7 @@ if (isset($_POST['submit'])) {
     }
     else
     {
-        $customer=new Customer($firstname,$lastname,$dob,$address1,$address2,$city,$zipcode,$province,$gender,$eemail,$username,$password);
+        $customer=new Customer($id,$firstname,$lastname,$dob,$address1,$address2,$city,$zipcode,$province,$gender,$eemail,$username,$password);
         
         $insert=Customer_DB::insertCustomer($customer);
         header("Location: index.php");        
