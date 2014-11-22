@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
         send_email($to, $from, $subject, $body, $is_body_html);
     } catch (Exception $ex) {
         $error = $ex->getMessage();
-        echo $error;
+        #echo $error;
     }
 }
     function send_email($to, $from, $subject, $body, $is_body_html = false) {
@@ -90,6 +90,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $gender = test_input($_POST["gender"]);
     }
+    
+
+    header('location: thankyou.php?name='.$name);
+    
+    
 }
 
 function test_input($data) {

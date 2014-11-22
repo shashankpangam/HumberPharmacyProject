@@ -2,7 +2,8 @@
 <?php
 $error_message = $username = $password = "";
 require_once '../Model/Customer_DB.php';
-
+ $error_message = '*Both username and password is required';
+ 
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -14,15 +15,15 @@ if (isset($_POST['submit'])) {
             $error_message = '*The username or password you entered is incorrect';
         } else {
             $_SESSION["customer"] = $customerid;
+            
+            
             header('location:index.php');
         }
     } else {
-        $error_message = '*Both username and password is required';
-        echo $error_message;
+
     }
 } else {
-//    $error_message = '*Both username and password is required';
-//    echo $error_message;
+ 
 }
 ?>
 
