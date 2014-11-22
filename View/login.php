@@ -16,9 +16,13 @@ if (isset($_POST['submit'])) {
             $_SESSION["customer"] = $customerid;
             header('location:index.php');
         }
+    } else {
+        $error_message = '*Both username and password is required';
+        echo $error_message;
     }
 } else {
-    $error_message = '*Both username and password is required';
+//    $error_message = '*Both username and password is required';
+//    echo $error_message;
 }
 ?>
 
@@ -26,7 +30,7 @@ if (isset($_POST['submit'])) {
 <div id="content">
     <?php require_once './sidebar.php'; ?>
     <div class="contactform">
-        <input type="hidden" name="customer" value="<?php echo $customer; ?>" />
+        <!--<input type="hidden" name="customer" value="<?php echo $customer; ?>" />-->
         <p class="txtcontus" style="width: 360px"><font color="white"><strong>Customer Login</strong></font></p><br />
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"> 
 
