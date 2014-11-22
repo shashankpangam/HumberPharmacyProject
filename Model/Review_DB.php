@@ -16,8 +16,8 @@ class Review_DB {
                 $record = new Review($row['reviewid'],
                         $row['productid'],
                         $row['customerid'],
-                        $row['review'],
-                        $row['stars'],
+                        $row['reviews'],
+                        $row['ratings'],
                         $row['reviewts']);
                 
                 $records[]=$record;
@@ -38,8 +38,8 @@ class Review_DB {
                 $record = new Review($results['reviewid'],
                         $results['productid'],
                         $results['customerid'],
-                        $results['review'],
-                        $results['stars'],
+                        $results['reviews'],
+                        $results['ratings'],
                         $results['reviewts']);
                 
             return $record;
@@ -61,8 +61,8 @@ class Review_DB {
                 $record = new Review($row['reviewid'],
                         $row['productid'],
                         $row['customerid'],
-                        $row['review'],
-                        $row['stars'],
+                        $row['reviews'],
+                        $row['ratings'],
                         $row['reviewts']);
                 
                 $records[]=$record;
@@ -86,8 +86,8 @@ class Review_DB {
                 $record = new Review($row['reviewid'],
                         $row['productid'],
                         $row['customerid'],
-                        $row['review'],
-                        $row['stars'],
+                        $row['reviews'],
+                        $row['ratings'],
                         $row['reviewts']);
                 
                 $records[]=$record;
@@ -97,20 +97,21 @@ class Review_DB {
     
     public static function addNewReview($review)
     {
-        $prodid=$review->productid;
-        $custid=$review->customerid;
-        $rev=$review->review;
-        $stars=$review->stars;
+        $productid=$review->getProductID();
+        $customerid=$review->getCustomerID();
+        $reviews=$review->getReviews();
+        $ratings=$review->getRatings();
         
-        $query = "insert into tbl_review (productid, customerid, review, stars) values (:productid, :customerid, :review, :stars)";
+        $db = Databases::connectDB();
+        $query = "insert into tbl_review (productid, customerid, reviews, ratings) values (:productid, :customerid, :reviews, :ratings)";
         $stm=$db->prepare($query);
-        $stm->bindParam(':customerid',$custid, PDO::PARAM_INT, 10);
-        $stm->bindParam(':productid',$prodid, PDO::PARAM_INT, 10);
-        $stm->bindParam(':review',$rev, PDO::PARAM_STR);
-        $stm->bindParam(':stars',$stars, PDO::PARAM_INT, 1);
+        $stm->bindParam(':customerid',$customerid, PDO::PARAM_INT, 10);
+        $stm->bindParam(':productid',$productid, PDO::PARAM_INT, 10);
+        $stm->bindParam(':reviews',$reviews, PDO::PARAM_STR);
+        $stm->bindParam(':ratings',$ratings, PDO::PARAM_INT, 1);
         $result = $stm->execute();
-        $lastid=$result->lastInsertId();
-        return $lastid;
+       // $lastid=$result->lastInsertId();
+        return $result;
     }
 }
 ?>
