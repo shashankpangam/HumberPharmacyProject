@@ -1,10 +1,29 @@
 <?php
 require_once './header.php';
 require_once '../Model/Product_DB.php';
+require_once '../Model/Product.php';
 require_once '../Model/Offer_DB.php';
-$request = $_GET['ID'];
+require_once '../Model/Review.php';
+require_once '../Model/Review_DB.php';
+      
+
+
+
+if (!isset($productid)){
+ $request = $_GET['ID'];
+}
+
+if (!isset($customerid)){
+    $customerid = $_SESSION['customerid'];
+}
 $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 ?>
+
+<!--<html>
+    <head>
+        <link href="stylesheet.css" rel="stylesheet"/>
+    </head>
+    <body>-->
 <div id="content">
     <?php require_once './sidebar.php'; ?>
     <div id="main">
@@ -65,7 +84,7 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                 </ul>                   
             </div>
             <div style="padding-top: 15px;">
-                <form method="post" action="../Model/ShoppingCart.php"> 
+                <form method="post" action="../Model/ShoppingCart.php" > 
                     <label>Quantity</label>
                     <select name="product_qty">
                         <option value="1">1</option>
@@ -87,9 +106,99 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                     echo $item->getProductDescription();
                     ?></p>
             </div>
+            <div  style="padding-top: 30px; margin-top: 50px">
+               
+
+          <?php 
+          
+          
+          // define variables and set to empty values
+           $error_message = $id = $reviews = $ratings = "";
+          
+          
+           if (isset($_POST['submit'])) {
+
+            //open a connection with the database
+            $id = null;
+          
+            //intialize the variables with form data
+            
+            $productid = $_POST['productid'];
+            $customerid = $_POST['customerid'];
+            $reviews = $_POST['reviews'];
+            $ratings = $_POST['ratings'];
+
+            
+            if (empty($productid) || empty($customerid)){
+                $error_message = " id is missing";
+            }
+            
+            
+            elseif (empty($reviews) || empty($ratings)) {
+                $error_message = "*One or more required fields are blank.";
+            }
+            else {
+                $review = new Review($productid, $customerid, $reviews, $ratings);
+
+                $insert = Review_DB::addNewReview($review);
+                header("Location: index.php");
+            }
+        }
+
+?>
+                
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"> 
+                <label><strong><h2><font color="Black">Write your Reviews</font></h2></strong></label>
+                <table style="width:80%" cellspacing="15">
+                    
+                    <tr>
+                        <td>Product ID:<font color="red"></font></td>
+                        <td><input type="text" name="productid" value="<?php echo $request; ?>"></td>
+                    </tr>
+                    <tr>
+                        <td>Customer ID:<font color="red"></font></td>
+                        <td><input type="text" name="customerid" value="<?php echo $customerid;  ?>"></td>
+                    </tr>
+                    
+                    <tr><td>Review:<font color="red"></font></td>
+                        <td><textarea rows="5" cols="50"  name="reviews" value="<?php echo $reviews; ?>" ></textarea> </td> 		
+                    </tr>
+                    <tr>
+                        <td>Rating:<font color="red"></font>:</td>
+                        <td>
+                            <input class="starRating" id="rating1" type="radio" name="ratings" value="<?php echo $ratings; ?>">
+                            <label for="rating1"><span>1</span></label>
+                            
+                            <input class="starRating"  id="rating2" type="radio" name="ratings" value="<?php echo $ratings; ?>">
+                            <label for="rating2"><span>2</span></label>
+                            
+                            <input class="starRating" id="rating3" type="radio" name="ratings" value="<?php echo $ratings; ?>">
+                            <label for="rating3"><span>3</span></label>
+                            
+                            <input class="starRating" id="rating4" type="radio" name="ratings" value="<?php echo $ratings; ?>">
+                            <label for="rating4"><span>4</span></label>
+                            
+                            <input class="starRating" id="rating5" type="radio" name="ratings" value="<?php echo $ratings; ?>">
+                            <label for="rating5"><span>5</span></label>
+                            
+                        </td>
+                    </tr>
+                </table>
+                <div class="bonesubmit">
+                <input class="btnsubmit" type="submit" name="submit" value="Submit" >
+
+                                <span class="btwosubmit">
+                                    <input class="btnsubmit" type="submit" name="clear" value="Clear" style="background-color:#CC3300;">
+                                </span>
+                </div>
+                 </form>
+                
+            </div>
         </div>
     </div>
 </div>
 <?php
 require_once './footer.php';
 ?>
+<!--</body>
+</html>-->
