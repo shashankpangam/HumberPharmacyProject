@@ -4,16 +4,16 @@ class Review {
     private $reviewid;
     private $productid;
     private $customerid;
-    private $review;
-    private $stars;
+    private $reviews;
+    private $ratings;
     private $reviewts;
     
-    public function __construct($reviewid,$productid,$customerid,$review,$stars,$reviewts) {
+    public function __construct($reviewid,$productid,$customerid,$reviews,$ratings,$reviewts) {
         $this->reviewid=$reviewid;
         $this->productid=$productid;
         $this->customerid=$customerid;
-        $this->review=$review;
-        $this->stars=$stars;
+        $this->reviews=$reviews;
+        $this->ratings=$ratings;
         $this->reviewts=$reviewts;
     }
     
@@ -37,21 +37,21 @@ class Review {
     {
         $this->customerid=$customerID;
     }
-    public function getReview()
+    public function getReviews()
     {
-        return $this->review;
+        return $this->reviews;
     }
-    public function setReview($review)
+    public function setReviews($reviews)
     {
-        $this->review=$review;
+        $this->reviews=$reviews;
     }
-    public function getStars()
+    public function getRatings()
     {
-        return $this->stars;
+        return $this->ratings;
     }
-    public function setStars($stars)
+    public function setRatings($ratings)
     {
-        $this->stars=$stars;
+        $this->ratings=$ratings;
     }
 }
 ?>
