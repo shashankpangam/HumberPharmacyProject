@@ -1,7 +1,70 @@
 <?php
 require_once 'Mail.php';
+//if (isset($_POST['submit'])) {
+//    
+//}
+// define variables and set to empty values
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
 $name = $email = $gender = $comment = $website = "";
+//if(isset($_POST["submit"]))
+//{
+//    $flag=true;
+//    if(empty($_POST["name"]))
+//    {
+//        $nameErr = "*Name is required";
+//        $flag = false;
+//    }
+//    else if (isset($_POST["name"]))
+//    {
+//        $name = test_input($_POST["name"]);
+//        if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+//            $nameErr = "*Only letters and white space allowed";
+//            $flag = false;
+//        }
+//    }
+//    else if (empty($_POST["email"])) {
+//        $emailErr = "*Email is required";
+//        $flag = false;
+//    }
+//    else if(isset($_POST["email"]))
+//    {
+//        $email = test_input($_POST["email"]);
+//        // check if e-mail address is well-formed
+//        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+//            $emailErr = "*Invalid email format";
+//            $flag = false;
+//        }
+//    }
+//    else if(isset($_POST["comment"]))
+//    {
+//        $comment = test_input($_POST["comment"]);
+//    }
+//    else if(empty($_POST("gender")))
+//    {
+//        $genderErr = "*Gender is required";
+//        $flag = false;
+//    }
+//    else if(isset($_POST["gender"]))
+//    {
+//        $gender = test_input($_POST["gender"]);
+//    }
+// else {
+//        $to = 'vortepharmacy@gmail.com'; //vorte pharmay email
+//        $from = $_POST['email']; // user email 
+//        $subject = $_POST['name']; // user name
+//        $body = $_POST['comment']; //user comments
+//        $is_body_html = true;
+//
+//        try {
+//            send_email($to, $from, $subject, $body, $is_body_html);
+//        } catch (Exception $ex) {
+//            $error = $ex->getMessage();
+//            #echo $error;
+//        }
+//        header('location: thankyou.php?name=' . $name);
+//    }
+//}
+
 
 if (isset($_POST["submit"])) {
     $flag = true;
@@ -42,7 +105,7 @@ if (isset($_POST["submit"])) {
         $gender = test_input($_POST["gender"]);
     }
 
-    if ($flag == true) {
+    if ($flag==true) {
         $to = 'vortepharmacy@gmail.com'; //vorte pharmay email
         $from = $_POST['email']; // user email 
         $subject = $_POST['name']; // user name
@@ -56,7 +119,7 @@ if (isset($_POST["submit"])) {
             #echo $error;
         }
         header('location: thankyou.php?name=' . $name);
-        $_POST = null;
+        $_POST=null;
     }
 }
 
@@ -109,7 +172,7 @@ function test_input($data) {
 
 <?php require_once './header.php'; ?>
 <div id="content">
-    <?php require_once './sidebar.php'; ?>
+<?php require_once './sidebar.php'; ?>
     <div class="contactform">
 
         <p class="txtcontus"><font color="white"><strong>Contact Us</strong></font></p><br />
@@ -117,7 +180,7 @@ function test_input($data) {
             <fieldset class="contusfs" style="width:405px;height: 270px;">
                 <div style="padding:15px 0px 10px 20px">
                     Name<span class="error">*: <input type="text" name="name">
-                        <?php echo $nameErr; ?></span>
+<?php echo $nameErr; ?></span>
                     <br><br>           
                     E-mail<span class="error">*: <input type="text" name="email">
                         <?php echo $emailErr; ?></span>
