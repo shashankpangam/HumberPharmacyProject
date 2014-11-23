@@ -1,71 +1,7 @@
 <?php
 require_once 'Mail.php';
-//if (isset($_POST['submit'])) {
-//    
-//}
-// define variables and set to empty values
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
 $name = $email = $gender = $comment = $website = "";
-//if(isset($_POST["submit"]))
-//{
-//    $flag=true;
-//    if(empty($_POST["name"]))
-//    {
-//        $nameErr = "*Name is required";
-//        $flag = false;
-//    }
-//    else if (isset($_POST["name"]))
-//    {
-//        $name = test_input($_POST["name"]);
-//        if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
-//            $nameErr = "*Only letters and white space allowed";
-//            $flag = false;
-//        }
-//    }
-//    else if (empty($_POST["email"])) {
-//        $emailErr = "*Email is required";
-//        $flag = false;
-//    }
-//    else if(isset($_POST["email"]))
-//    {
-//        $email = test_input($_POST["email"]);
-//        // check if e-mail address is well-formed
-//        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-//            $emailErr = "*Invalid email format";
-//            $flag = false;
-//        }
-//    }
-//    else if(isset($_POST["comment"]))
-//    {
-//        $comment = test_input($_POST["comment"]);
-//    }
-//    else if(empty($_POST("gender")))
-//    {
-//        $genderErr = "*Gender is required";
-//        $flag = false;
-//    }
-//    else if(isset($_POST["gender"]))
-//    {
-//        $gender = test_input($_POST["gender"]);
-//    }
-// else {
-//        $to = 'vortepharmacy@gmail.com'; //vorte pharmay email
-//        $from = $_POST['email']; // user email 
-//        $subject = $_POST['name']; // user name
-//        $body = $_POST['comment']; //user comments
-//        $is_body_html = true;
-//
-//        try {
-//            send_email($to, $from, $subject, $body, $is_body_html);
-//        } catch (Exception $ex) {
-//            $error = $ex->getMessage();
-//            #echo $error;
-//        }
-//        header('location: thankyou.php?name=' . $name);
-//    }
-//}
-
-
 if (isset($_POST["submit"])) {
     $flag = true;
     if (empty($_POST["name"])) {
