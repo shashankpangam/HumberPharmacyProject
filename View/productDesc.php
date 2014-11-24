@@ -82,6 +82,7 @@ $item = Product_DB::getProductByID($request);
                     else
                         echo "Out of Stock";
                     ?>
+<<<<<<< HEAD
                             </label>                      
                         </div>   
                         <img src="<?php echo $item->getProductImage() ?>" height="192" width="190" alt="<?php $item->getProductImage() ?>" />
@@ -90,6 +91,71 @@ $item = Product_DB::getProductByID($request);
                         <!--
                             Checking for offers code
                         -->
+=======
+                </ul>                   
+            </div>
+            <div style="padding-top: 15px;">
+                <form method="post" action="../Model/ShoppingCart.php" > 
+                    <label>Quantity</label>
+                    <select name="product_qty">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <button class="btnsubmit" style="width:90px;height: 30px">Add To Cart</button>
+                    <input type="hidden" name="product_id" value="<?php echo $item->getProductID(); ?>">
+                    <input type="hidden" name="type" value="add" >
+                    <input type="hidden" name="return_url" value="<?php echo $current_url ?>" >
+                </form>
+            </div>
+            <br/><br/>
+            <div style="padding-left: 30px; top:40px; margin-top: 70px">           
+                <label><font color="red">PRODUCT DESCRIPTION</font></label>
+                <p><?php
+                    echo $item->getProductDescription();
+                    ?></p>
+            </div>
+            <div  style="padding-top: 30px; margin-top: 50px">
+               
+
+          <?php 
+          
+          
+          // define variables and set to empty values
+           $error_message = $reviews = $ratings = "";
+          
+          
+           if (isset($_POST['submit'])) {
+
+            //open a connection with the database
+            $id = null;
+          
+            //intialize the variables with form data
+            
+            $productid = $_POST['productid'];
+            $customerid = $_POST['customerid'];
+            $reviews = $_POST['reviews'];
+            $ratings = $_POST['ratings'];
+
+            
+            if (empty($productid) || empty($customerid)){
+                $error_message = " id is missing";
+            }
+            
+            
+            elseif (empty($reviews) || empty($ratings)) {
+                $error_message = "*One or more required fields are blank.";
+            }
+            else {
+                $review = new Review($productid, $customerid, $reviews, $ratings);
+
+                $insert = Review_DB::addNewReview($review);
+                header("Location: index.php");
+            }
+        }
+>>>>>>> origin/master
 
 <?php
 $checkoffer = Offer_DB::getOfferByProductID($request);
