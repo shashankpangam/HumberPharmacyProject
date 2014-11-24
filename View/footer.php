@@ -1,4 +1,10 @@
-
+<?php
+    require_once '../Model/RecentView_DB.php';
+    if (isset($_SESSION["customer"]))
+    {
+        $customerid=$_SESSION["customer"];
+    }
+?>
 <div id="footer">
 
     <img src="../images/cards.jpg" alt="" width="919" height="76" />

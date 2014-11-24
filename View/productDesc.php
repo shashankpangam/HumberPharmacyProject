@@ -7,8 +7,7 @@ require_once '../Model/Offer_DB.php';
 require_once '../Model/Review.php';
 require_once '../Model/Review_DB.php';
 
-if (isset($_GET['ID']))
-{
+if (isset($_GET['ID'])) {
     $request = $_GET['ID'];
 }
 if (isset($_SESSION["customer"])) {
@@ -31,24 +30,23 @@ if (isset($_POST['submit'])) {
     $id = null;
 
     //intialize the variables with form data
-
     //$productid = $request;
     //$customerid = $_SESSION["customer"];
     $reviews = $_POST['reviews'];
     $ratings = $_POST['ratings'];
 
 
-   if (empty($reviews) || empty($ratings)) {
+    if (empty($reviews) || empty($ratings)) {
         $error_message = "*One or more required fields are blank.";
     } else {
 
         $reviewid = null;
         $productid = $request;
-       // $customerid = $_SESSION['customer'];
+        // $customerid = $_SESSION['customer'];
         $review = new Review($reviewid, $productid, $customerid, $reviews, $ratings);
         $insert = Review_DB::addNewReview($review);
-        header("Location: productDesc.php?ID=$productid".  'echo "Thank you for Review";');
-       // header('location: thankyou.php?ID='.$productid);
+        header("Location: productDesc.php?ID=$productid" . 'echo "Thank you for Review";');
+        // header('location: thankyou.php?ID='.$productid);
     }
 }
 ?>
@@ -75,14 +73,13 @@ $item = Product_DB::getProductByID($request);
                         echo "instock";
                     else
                         echo "outofstock";
-                    ?>" style="font-size: 20px;"><?php
-                    $instock = $item->getProductQuantity();
-                    if ($instock > 0)
-                        echo "In Stock";
-                    else
-                        echo "Out of Stock";
-                    ?>
-<<<<<<< HEAD
+?>" style="font-size: 20px;"><?php
+                            $instock = $item->getProductQuantity();
+                            if ($instock > 0)
+                                echo "In Stock";
+                            else
+                                echo "Out of Stock";
+                            ?>
                             </label>                      
                         </div>   
                         <img src="<?php echo $item->getProductImage() ?>" height="192" width="190" alt="<?php $item->getProductImage() ?>" />
@@ -91,80 +88,74 @@ $item = Product_DB::getProductByID($request);
                         <!--
                             Checking for offers code
                         -->
-=======
-                </ul>                   
-            </div>
-            <div style="padding-top: 15px;">
-                <form method="post" action="../Model/ShoppingCart.php" > 
-                    <label>Quantity</label>
-                    <select name="product_qty">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <button class="btnsubmit" style="width:90px;height: 30px">Add To Cart</button>
-                    <input type="hidden" name="product_id" value="<?php echo $item->getProductID(); ?>">
-                    <input type="hidden" name="type" value="add" >
-                    <input type="hidden" name="return_url" value="<?php echo $current_url ?>" >
-                </form>
-            </div>
-            <br/><br/>
-            <div style="padding-left: 30px; top:40px; margin-top: 70px">           
-                <label><font color="red">PRODUCT DESCRIPTION</font></label>
-                <p><?php
-                    echo $item->getProductDescription();
-                    ?></p>
-            </div>
-            <div  style="padding-top: 30px; margin-top: 50px">
-               
+                        </ul>                   
+                    </div>
+                    <div style="padding-top: 15px;">
+                        <form method="post" action="../Model/ShoppingCart.php" > 
+                            <label>Quantity</label>
+                            <select name="product_qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <button class="btnsubmit" style="width:90px;height: 30px">Add To Cart</button>
+                            <input type="hidden" name="product_id" value="<?php echo $item->getProductID(); ?>">
+                            <input type="hidden" name="type" value="add" >
+                            <input type="hidden" name="return_url" value="<?php echo $current_url ?>" >
+                        </form>
+                    </div>
+                    <br/><br/>
+                    <div style="padding-left: 30px; top:40px; margin-top: 70px">           
+                        <label><font color="red">PRODUCT DESCRIPTION</font></label>
+                        <p><?php
+                                   echo $item->getProductDescription();
+                            ?></p>
+                    </div>
+                    <div  style="padding-top: 30px; margin-top: 50px">
 
-          <?php 
-          
-          
-          // define variables and set to empty values
-           $error_message = $reviews = $ratings = "";
-          
-          
-           if (isset($_POST['submit'])) {
-
-            //open a connection with the database
-            $id = null;
-          
-            //intialize the variables with form data
-            
-            $productid = $_POST['productid'];
-            $customerid = $_POST['customerid'];
-            $reviews = $_POST['reviews'];
-            $ratings = $_POST['ratings'];
-
-            
-            if (empty($productid) || empty($customerid)){
-                $error_message = " id is missing";
-            }
-            
-            
-            elseif (empty($reviews) || empty($ratings)) {
-                $error_message = "*One or more required fields are blank.";
-            }
-            else {
-                $review = new Review($productid, $customerid, $reviews, $ratings);
-
-                $insert = Review_DB::addNewReview($review);
-                header("Location: index.php");
-            }
-        }
->>>>>>> origin/master
 
 <?php
-$checkoffer = Offer_DB::getOfferByProductID($request);
-if ($checkoffer == null) {
-    ?>
+// define variables and set to empty values
+$error_message = $reviews = $ratings = "";
+
+
+if (isset($_POST['submit'])) {
+
+    //open a connection with the database
+    $id = null;
+
+    //intialize the variables with form data
+
+    $productid = $_POST['productid'];
+    $customerid = $_POST['customerid'];
+    $reviews = $_POST['reviews'];
+    $ratings = $_POST['ratings'];
+
+
+    if (empty($productid) || empty($customerid)) {
+        $error_message = " id is missing";
+    } elseif (empty($reviews) || empty($ratings)) {
+        $error_message = "*One or more required fields are blank.";
+    } else {
+        $review = new Review($productid, $customerid, $reviews, $ratings);
+
+        $insert = Review_DB::addNewReview($review);
+        header("Location: index.php");
+    }
+}
+?>
+
+
+                        <?php
+                        $checkoffer = Offer_DB::getOfferByProductID($request);
+                        if ($checkoffer == null) {
+                            ?>
                             <label class="realPrice" style="font-size: 15px;font-weight: bold;">$<?php echo $item->getProductPrice(); ?></label>
-    <?php
-} else {
-    ?>
+                            <?php
+                        } else {
+                            ?>
                             <label class="discountedPrice">$<?php echo ($item->getProductPrice() * ($checkoffer->getDiscountRate() / 100)); ?></label><br/>
                             <label class="realDiscountedPrice">This was for : $<?php
                             echo $item->getProductPrice();
@@ -173,15 +164,15 @@ if ($checkoffer == null) {
 
                         <label style="color: red;padding-top: 5px;padding-bottom: 5px;">RECOMMEND FOR:</label><br />
                         <ul>
-                            <?php
-                            $symptoms = $item->getSymptoms();
-                            $arrSymptoms = explode(",", $symptoms);
-                            foreach ($arrSymptoms as $index) :
-                                ?>
-                                <li><?php echo $index; ?></li>
-                                <?php
-                            endforeach;
+                        <?php
+                        $symptoms = $item->getSymptoms();
+                        $arrSymptoms = explode(",", $symptoms);
+                        foreach ($arrSymptoms as $index) :
                             ?>
+                                <li><?php echo $index; ?></li>
+    <?php
+endforeach;
+?>
                         </ul>                   
                     </div>
                     <div style="padding-top: 15px;">
@@ -204,17 +195,17 @@ if ($checkoffer == null) {
                     <div style="padding-left: 30px; top:40px; margin-top: 70px">           
                         <label><font color="red">PRODUCT DESCRIPTION</font></label>
                         <p><?php
-                            echo $item->getProductDescription();
-                            ?></p>
+echo $item->getProductDescription();
+?></p>
                     </div>
-                    
-                    
-<!--//                          $form = form;
-//                         if(!$_SESSION = 'customer')
-//                         {
-//                            $form = 'hidden';
-//                         }-->
-                
+
+
+                    <!--//                          $form = form;
+                    //                         if(!$_SESSION = 'customer')
+                    //                         {
+                    //                            $form = 'hidden';
+                    //                         }-->
+
                     <div  style="padding-top: 30px; margin-top: 50px">
                         <form  name = "form" method="post" action="productDesc.php?<?php echo "ID=" . $request; ?>"> 
                             <label><strong><h2><font color="Black">Write your Reviews</font></h2></strong></label>

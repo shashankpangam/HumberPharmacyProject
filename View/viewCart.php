@@ -2,7 +2,6 @@
 require_once './header.php';
 require_once '../Model/Product_DB.php';
 $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-session_start();
 ?>
 <div id="content">
     <?php
@@ -14,7 +13,7 @@ session_start();
             <?php
             if (isset($_SESSION["products"])) {
                 ?>
-                <form method="post" action="#">
+                <form method="post" action="../Model/order_process.php">
                     <ul>
                         <?php
                         $cart_items = 0;
@@ -38,19 +37,22 @@ session_start();
                             echo '<input type="hidden" name="item_code[' . $cart_items . ']" value="' . $product_id . '" />';
                             echo '<input type="hidden" name="item_desc[' . $cart_items . ']" value="' . $result->getProductDescription() . '" />';
                             echo '<input type="hidden" name="item_qty[' . $cart_items . ']" value="' . $cart_itm["qty"] . '" />';
+                            echo '<input type="hidden" name="item_price[' . $cart_items . ']" value="' . $cart_itm["price"] . '" />';
+                            echo '<input type="hidden" name="total_amount" value="' . $total . '" />';
                             $cart_items ++;
                         }
                         ?>
                     </ul>
                     <?php
                     echo '<span class="check-out-txt">';
-		echo '<strong>Total : '.'$'.$total.'</strong>  ';
-		echo '</span>';
+                    echo '<strong>Total : ' . '$' . $total . '</strong>  ';
+                    echo '</span>';
+                    echo '<input class="btnsubmit" type="submit" name="submit" value="Submit">';
                     ?>
                 </form>
                 <?php
             } else {
-                echo 'Your Cart is empty';
+                echo 'Your Cart is empty, Please browse through our amazing range of products!';
             }
             ?>
         </div>
