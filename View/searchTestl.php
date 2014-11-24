@@ -1,4 +1,4 @@
-<?php require_once './header.php'; ?>
+<!--<?php require_once './header.php'; ?>-->
 <script>
   (function() {
     var cx = '017070790979240891299:w2vvtx-qxwa';
@@ -18,3 +18,4 @@
    
 </div>
 <?php require_once './footer.php'; ?>
+-->

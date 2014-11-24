@@ -14,9 +14,7 @@ if (isset($_POST['submit'])) {
         if ($customerid == null) {
             $error_message = '*The username or password you entered is incorrect';
         } else {
-            $_SESSION["customer"] = $customerid;
-            
-            
+            $_SESSION["customer"] = $customerid;           
             header('location:index.php');
         }
     } else {

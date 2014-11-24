@@ -113,7 +113,7 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
           
           
           // define variables and set to empty values
-           $error_message = $id = $reviews = $ratings = "";
+           $error_message = $reviews = $ratings = "";
           
           
            if (isset($_POST['submit'])) {
