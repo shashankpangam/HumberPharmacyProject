@@ -18,21 +18,26 @@ if(isset($_POST["item_code"])){
 	
 	//select products using given ids 
         $results = Product_DB::getProductsByIDS($item_codes);
-        $count = count($results);
+       
         $items = array();
         $item_total=0;
         foreach ($results as $row) :
-            $item_quantity = ( isset( $_POST[$row->getProductID()."_qty"] ) && is_numeric( $_POST[$row->getProductID()."_qty"] ) ) ? $_POST[$row->getProductID()."_qty"] : 1;
+            $item_quantity = ( isset( $_POST["item_qty"] ) && is_numeric( $_POST["item_qty"] ) ) ? $_POST["item_qty"] : 1;
             $item = array('name' => $row->getProductName(),
                           'quantity' => $item_quantity,
                           'price'=>$row->getProductPrice(),
                           'sku'=> $row->getProductID(),
                           'currency' => PP_CURRENCY);
             array_push($items, $item);
-            $item_total = $item_total + ($row->getProductPrice() * $item_quantity);
+            
         endforeach;
         var_dump($items);
-	
+	$count = count($items);
+        for($i=0;$i<$count;$i++)
+        {
+            $items[$i]['quantity']=  intval($_POST['item_qty'][$i]);
+            $item_total = $item_total + ($items[$i]['price'] * intval($_POST['item_qty'][$i]));
+        }
 	//Set session variables of items and total price for later use.
 	$_SESSION["items"] = $items;
 	$_SESSION["items_total"] = $item_total;
