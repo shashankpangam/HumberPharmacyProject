@@ -27,6 +27,33 @@ class Product_DB{
             return $records;
     }
     
+    public static function getProductsByIDS($ids){
+        $db = Databases::connectDB();
+            $query = 'select * from tbl_product where productid in ('.$ids.')';
+            $stm=$db->prepare($query);
+            $stm->bindParam(':ids',$ids, PDO::PARAM_STR);
+            $stm->execute();
+            $results=$stm->fetchAll();
+            
+            $records = array();
+            foreach($results as $row)
+            {
+                $record = new Product($row['productid'],
+                        $row['name'],
+                        $row['description'],
+                        $row['symptoms'],
+                        $row['category'],
+                        $row['price'],
+                        $row['ondiscount'],
+                        $row['quantity'],
+                        $row['sold'],
+                        $row['images']);
+                
+                $records[]=$record;
+            }
+            return $records;
+    }
+    
     public static function getProductCountByCategory($category){
        
         return 42;

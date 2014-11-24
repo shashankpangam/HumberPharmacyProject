@@ -13,7 +13,7 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
             <?php
             if (isset($_SESSION["products"])) {
                 ?>
-                <form method="post" action="../Model/order_process.php">
+            <form method="post" action="payment_option.php">
                     <ul>
                         <?php
                         $cart_items = 0;

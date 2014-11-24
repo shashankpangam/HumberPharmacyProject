@@ -16,6 +16,15 @@ use PayPal\Api\FundingInstrument;
 //function gets access token from PayPal
 function apiContext(){
 	$apiContext = new ApiContext(new OAuthTokenCredential(CLIENT_ID, CLIENT_SECRET));
+	$apiContext->setConfig(
+			array(
+				'mode' => PP_MODE, //sandbox or live 
+				'http.ConnectionTimeOut' => 30,
+				'log.LogEnabled' => true, //enable log
+				'log.FileName' => 'PayPal.log', //log file name
+				'log.LogLevel' => 'ERROR' //Logging level can be one of FINE, INFO, WARN or ERROR
+			)
+		);
 	return $apiContext;
 }
 
@@ -84,9 +93,13 @@ function pay_direct_with_credit_card($credit_card_params, $currency, $amount_tot
 	$amount->setCurrency($currency);
 	$amount->setTotal($amount_total);
 	
+	$items = new ItemList();
+	$items->setItems($my_items);
+	
 	$transaction = new Transaction();
 	$transaction->setAmount($amount);
 	$transaction->setDescription("creating a direct payment with credit card");
+	$transaction->setItemList($items);
 	
 	$payment = new Payment();
 	$payment->setIntent("sale");
@@ -95,5 +108,6 @@ function pay_direct_with_credit_card($credit_card_params, $currency, $amount_tot
 
 	$payment->create(apiContext());	
 	
+
 	return $payment;
 }
