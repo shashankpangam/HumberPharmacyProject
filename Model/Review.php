@@ -53,5 +53,9 @@ class Review {
     {
         $this->ratings=$ratings;
     }
+    public function getReviewTS()
+    {
+        return $this->reviewts;
+    }
 }
 ?>

@@ -561,3 +561,44 @@ form.forgot_password{
     position: relative;
     float:right;
 }
+//Recent Views Section
+#recentview
+{
+    height: 100px;
+    line-height: 100px;
+}
+#recentview ul
+{
+margin: 0;
+padding: 0;
+list-style-type: none;
+text-align: left;
+}
+
+#recentview ul li { display: inline-block; }
+
+#recentview ul li a
+{
+text-decoration: none;
+padding: 5px;
+width: 130px;
+color: #000;
+background-color: #fff;
+}
+
+//#recentview ul li a:hover
+//{
+//color: #000;
+//background-color: #369;
+//}
+#recentview ul li a img
+{
+    float:left;
+    height : 100px;
+    width : 100px;
+}
+.recentProductName
+{
+    text-align:center;
+}
+//Recent Views Section

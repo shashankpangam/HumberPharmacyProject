@@ -18,13 +18,18 @@ if(isset($_POST["type"]) && $_POST["type"]=='add')
 	$product_qty 	= filter_var($_POST["product_qty"], FILTER_SANITIZE_NUMBER_INT); //product quantity
 	$return_url 	= base64_decode($_POST["return_url"]); //return url
 	
+        $result = Product_DB::getProductByID($product_id);
 	//limit quantity for single product
 	if($product_qty > 10){
-		die('<div align="center">This site does not allowed more than 10 quantity!<br /><a href="../View/index.php">Go Back</a>.</div>');
+		die('<div align="center">This site does not allowed more than 10 quantity!<br /><a href="../View/productDesc.php?ID='.$product_id.'">Go Back</a>.</div>');
 	}
+        else if($result->getProductQuantity()<$product_qty)
+        {
+            die('<div align="center">Not enough quantity available! <br /><a href="../View/productDesc.php?ID='.$product_id.'">Go Back</a>.</div>');
+        }
 
 	//MySqli query - get details of item from db using product code
-	$result = Product_DB::getProductByID($product_id);
+	
 	//$obj = $results->fetch_object();
 	
 	if ($result) { //we have the product info 

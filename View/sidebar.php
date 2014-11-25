@@ -1,3 +1,7 @@
+<?php
+    require_once '../Model/Review_DB.php';
+    require_once '../Model/Product_DB.php';
+?>
 <div id="sidebar">
     <div id="navigation">
         <ul>
@@ -30,11 +34,16 @@
     <div>
         <img src="../images/title2.gif" alt="" width="233" height="41" /><br />																																																																																																																																																															
         <div class="review">
-            <a href="#"><img src="../images/pic1.jpg" alt="" width="181" height="161" /></a>
+            <?php
+                $review = Review_DB::getRandomReview();
+                $product = Product_DB::getProductByID($review->getProductID());
+            ?>
+            <a href="productDesc.php?ID=<?php echo $product->getProductID();?>"><img src="<?php echo $product->getProductImage();?>" alt="<?php echo $product->getProductName();?>" width="181" height="161" /></a>
             <br />
-            <a href="login.php">Product 07</a><br />
-            <p>Dolor sit amet, consetetur sadipscing elitr, seddiam nonumy eirmod tempor. invidunt ut labore et dolore magna </p>
-            <img src="../images/stars.jpg" alt="" width="118" height="20" class="stars" />
+            <a href="productDesc.php?ID=<?php echo $product->getProductID();?>"><?php echo $product->getProductName()?></a><br />
+            <p><?php echo $review->getReviews();?></p>
+            <!--<img src="../images/stars.jpg" alt="" width="118" height="20" class="stars" />-->
+            <label><?php echo $review->getRatings().'/5';?></label>
 
         </div>
     </div>

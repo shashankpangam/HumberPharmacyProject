@@ -4,6 +4,7 @@ session_start();
 include_once "./config.php";
 include_once "../vendor/autoload.php"; //include PayPal SDK
 include_once "./functions.inc.php"; //our PayPal functions
+require_once './Order_DB.php';
 
 if(isset($_POST["payment_method"]) && isset($_SESSION["items"])){
 	
