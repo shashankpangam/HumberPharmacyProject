@@ -25,7 +25,36 @@ if (isset($_SESSION["customer"])) {
 
 $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 ?>
+<?php
+// define variables and set to empty values
+$error_message = $reviews = $ratings = "";
 
+if (isset($_POST['submit'])) {
+
+    //open a connection with the database
+    $id = null;
+
+    //intialize the variables with form data
+    //$productid = $request;
+    //$customerid = $_SESSION["customer"];
+    $reviews = $_POST['reviews'];
+    $ratings = $_POST['ratings'];
+
+
+    if (empty($reviews) || empty($ratings)) {
+        $error_message = "*One or more required fields are blank.";
+    } else {
+
+        $reviewid = null;
+        $productid = $request;
+        // $customerid = $_SESSION['customer'];
+        $review = new Review($reviewid, $productid, $customerid, $reviews, $ratings);
+        $insert = Review_DB::addNewReview($review);
+        header("Location: productDesc.php?ID=$productid" . 'echo "Thank you for Review";');
+        // header('location: thankyou.php?ID='.$productid);
+    }
+}
+?>
 
 <html>
     <head>
@@ -130,12 +159,16 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                         $id = null;
 
                         //intialize the variables with form data
-                    if (!isset($_POST['reviews'])){  
-                    $reviews = $_POST['reviews'];}
-                    if (isset($_POST['ratings'])){
-                    $ratings = $_POST['ratings'];
-                    }
-                        if (empty($reviews) || empty($ratings)) {
+
+                        $productid = $_POST['productid'];
+                        $customerid = $_POST['customerid'];
+                        $reviews = $_POST['reviews'];
+                        $ratings = $_POST['ratings'];
+
+
+                        if (empty($productid) || empty($customerid)) {
+                            $error_message = " id is missing";
+                        } elseif (empty($reviews) || empty($ratings)) {
                             $error_message = "*One or more required fields are blank.";
                         } else {
                             $review = new Review($productid, $customerid, $reviews, $ratings);
@@ -146,34 +179,45 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                     }
                     ?>
 
+                    <!--//                          $form = form;
+                    //                         if(!$_SESSION = 'customer')
+                    //                         {
+                    //                            $form = 'hidden';
+                    //                         }-->
+
                     <div  style="margin-top: 50px">
                         <form  name = "form" method="post" action="productDesc.php?<?php echo "ID=" . $request; ?>"> 
-                          <label><strong><h2><font color="Black">Write your Reviews</font></h2></strong></label>
-                            <font color="red"><p style="padding-left: 30px; padding-top: 9px;">* Indicates a required field </p>
-                            <p style="padding-left: 30px;"><?php echo $error_message; ?></p></font>
+                            <label><strong><h2><font color="Black">Write your Reviews</font></h2></strong></label>
                             <table style="width:80%" cellspacing="15">
 
+<!--                                <tr>
+                                    <td>Product ID:<font color="red"></font></td>
+                                    <td><input type="text"  name="productid" value=</td>
+                                </tr>
+                                <tr>
+                                    <td>Customer ID:<font color="red"></font></td>
+                                    <td><input type="text"  name="customerid" value="</td>
+                                </tr>-->
 
-
-                                <tr><td>Review:<font color="red">*</font></td>
+                                <tr><td>Review:<font color="red"></font></td>
                                     <td><textarea rows="5" cols="50"  name="reviews" value="<?php echo $reviews; ?>" ></textarea> </td> 		
                                 </tr>
                                 <tr>
-                                    <td>Rating:<font color="red">*</font></td>
+                                    <td>Rating:<font color="red"></font></td>
                                     <td>
-                                        <input class="starRating" id="rating1" type="radio" name="ratings" value="<?php echo $ratings; ?>">
+                                        <input class="starRating" id="rating1" type="radio" name="ratings" value="1">
                                         <label for="rating1"><span>1</span></label>
 
-                                        <input class="starRating"  id="rating2" type="radio" name="ratings" value="<?php echo $ratings; ?>">
+                                        <input class="starRating"  id="rating2" type="radio" name="ratings" value="2">
                                         <label for="rating2"><span>2</span></label>
 
-                                        <input class="starRating" id="rating3" type="radio" name="ratings" value="<?php echo $ratings; ?>">
+                                        <input class="starRating" id="rating3" type="radio" name="ratings" value="3">
                                         <label for="rating3"><span>3</span></label>
 
-                                        <input class="starRating" id="rating4" type="radio" name="ratings" value="<?php echo $ratings; ?>">
+                                        <input class="starRating" id="rating4" type="radio" name="ratings" value="4">
                                         <label for="rating4"><span>4</span></label>
 
-                                        <input class="starRating" id="rating5" type="radio" name="ratings" value="<?php echo $ratings; ?>"> 
+                                        <input class="starRating" id="rating5" type="radio" name="ratings" value="5"> 
                                         <label for="rating5"><span>5</span></label>
 
                                     </td>
