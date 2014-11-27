@@ -1,6 +1,6 @@
 <?php
-    require_once '../Model/Review_DB.php';
-    require_once '../Model/Product_DB.php';
+require_once '../Model/Review_DB.php';
+require_once '../Model/Product_DB.php';
 ?>
 <div id="sidebar">
     <div id="navigation">
@@ -14,37 +14,53 @@
         </ul>
     </div>
     <div id="cart">
-            
-            <?php 
-                if(isset($_SESSION["products"]))
-                {
-                    $items = count($_SESSION["products"]);
-                }
- else {
-     $items = 0;
- }
-            ?>
+
+        <?php
+        if (isset($_SESSION["products"])) {
+            $items = count($_SESSION["products"]);
+        } else {
+            $items = 0;
+        }
+        ?>
         <table   width="100%">
             <tr>
                 <td width="20%" align="center"><a href="viewCart.php"><img src="../images/shopcart.png" alt="Shopping Cart" height="30px" width="30px"/></a></td>
-                <td width="80%"><a href="viewCart.php" id="shoppingcartlink"><strong>Shopping cart:</strong><?php echo $items?> items</a></td>
+                <td width="80%"><a href="viewCart.php" id="shoppingcartlink"><strong>Shopping cart:</strong><?php echo $items ?> items</a></td>
             </tr>
         </table>
-        </div>
+    </div>
     <div>
         <img src="../images/title2.gif" alt="" width="233" height="41" /><br />																																																																																																																																																															
         <div class="review">
-            <?php
-                $review = Review_DB::getRandomReview();
-                $product = Product_DB::getProductByID($review->getProductID());
-            ?>
-            <a href="productDesc.php?ID=<?php echo $product->getProductID();?>"><img src="<?php echo $product->getProductImage();?>" alt="<?php echo $product->getProductName();?>" width="181" height="161" /></a>
+<?php
+$review = Review_DB::getRandomReview();
+$product = Product_DB::getProductByID($review->getProductID());
+?>
+            <a href="productDesc.php?ID=<?php echo $product->getProductID(); ?>"><img src="<?php echo $product->getProductImage(); ?>" alt="<?php echo $product->getProductName(); ?>" width="181" height="161" /></a>
             <br />
-            <a href="productDesc.php?ID=<?php echo $product->getProductID();?>"><?php echo $product->getProductName()?></a><br />
-            <p><?php echo $review->getReviews();?></p>
+            <a href="productDesc.php?ID=<?php echo $product->getProductID(); ?>"><?php echo $product->getProductName() ?></a><br />
+            <p><?php echo $review->getReviews(); ?></p>
             <!--<img src="../images/stars.jpg" alt="" width="118" height="20" class="stars" />-->
-            <label><?php echo $review->getRatings().'/5';?></label>
-
+            <label><?php echo $review->getRatings() . '/5'; ?></label>
+            <span>
+                <span class="rating">
+                    <input type="radio" class="rating-input"
+                           id="rating-input-1-5" name="rating-input-1" value="1">
+                    <label for="rating-input-1-5" class="rating-star"></label>
+                    <input type="radio" class="rating-input"
+                           id="rating-input-1-4" name="rating-input-1" value="2">
+                    <label for="rating-input-1-4" class="rating-star"></label>
+                    <input type="radio" class="rating-input"
+                           id="rating-input-1-3" name="rating-input-1" value="3">
+                    <label for="rating-input-1-3" class="rating-star"></label>
+                    <input type="radio" class="rating-input"
+                           id="rating-input-1-2" name="rating-input-1" value="4">
+                    <label for="rating-input-1-2" class="rating-star"></label>
+                    <input type="radio" class="rating-input"
+                           id="rating-input-1-1" name="rating-input-1" value="5">
+                    <label for="rating-input-1-1" class="rating-star"></label>
+                </span>
+            </span>
         </div>
     </div>
 </div>

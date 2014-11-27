@@ -233,8 +233,8 @@ body{
     color:#FFFFFF;
     /*font-weight:bold;*/
     line-height:23px;
-/*    position: relation;
-    bottom:40px;*/
+    /*    position: relation;
+        bottom:40px;*/
 
 }
 .center{
@@ -569,21 +569,21 @@ form.forgot_password{
 }
 #recentview ul
 {
-margin: 0;
-padding: 0;
-list-style-type: none;
-text-align: left;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: left;
 }
 
 #recentview ul li { display: inline-block; }
 
 #recentview ul li a
 {
-text-decoration: none;
-padding: 5px;
-width: 130px;
-color: #000;
-background-color: #fff;
+    text-decoration: none;
+    padding: 5px;
+    width: 130px;
+    color: #000;
+    background-color: #fff;
 }
 
 //#recentview ul li a:hover
@@ -601,4 +601,29 @@ background-color: #fff;
 {
     text-align:center;
 }
-//Recent Views Section
+//review stars CSS
+.rating {
+    overflow: hidden;
+    display: inline-block;
+}
+.rating-input {
+    position: absolute;
+    left: 0;
+    top: -50px;
+}
+.rating-star,
+.rating:hover .rating-star {
+    position: relative;
+    float: right;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url('../images/star.png') 0 -16px;
+}
+.rating:hover .rating-star:hover,
+.rating:hover .rating-star:hover ~ .rating-star,
+.rating-input:checked ~ .rating-star {
+    background-position: 0 0;
+}
+
+

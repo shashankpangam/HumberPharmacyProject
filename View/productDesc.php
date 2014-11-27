@@ -13,10 +13,9 @@ if (isset($_GET['ID'])) {
 }
 if (isset($_SESSION["customer"])) {
     $customerid = $_SESSION["customer"];
-    $newRecentView = RecentView_DB::newRecentView($customerid, $request); 
+    $newRecentView = RecentView_DB::newRecentView($customerid, $request);
 }
 //This Code is for Recent Views
-
 //This code is for Recent Views
 //
 //if (!isset($ratings)){
@@ -73,12 +72,12 @@ if (isset($_POST['submit'])) {
                         <h2><?php echo $item->getProductName() ?></h2>               
                         <div>
                             <label class="<?php
-                            $instock = $item->getProductQuantity();
-                            if ($instock > 0)
-                                echo "instock";
-                            else
-                                echo "outofstock";
-                            ?>" style="font-size: 20px;"><?php
+                    $instock = $item->getProductQuantity();
+                    if ($instock > 0)
+                        echo "instock";
+                    else
+                        echo "outofstock";
+                    ?>" style="font-size: 20px;"><?php
                                    $instock = $item->getProductQuantity();
                                    if ($instock > 0)
                                        echo "In Stock";
@@ -104,9 +103,9 @@ if (isset($_POST['submit'])) {
                                 ?>
                                 <label class="discountedPrice">$<?php echo ($item->getProductPrice() * ($checkoffer->getDiscountRate() / 100)); ?></label><br/>
                                 <label class="realDiscountedPrice">This was for : $<?php
-                                    echo $item->getProductPrice();
-                                }
-                                ?></label><br/><br />
+                            echo $item->getProductPrice();
+                        }
+                            ?></label><br/><br />
 
                             <label style="color: red;padding-top: 5px;padding-bottom: 5px;">RECOMMEND FOR:</label><br />
                             <ul>
@@ -142,8 +141,8 @@ if (isset($_POST['submit'])) {
                     <div style="padding-left: 30px; top:40px; margin-top: 70px">           
                         <label><font color="red">PRODUCT DESCRIPTION</font></label>
                         <p><?php
-                            echo $item->getProductDescription();
-                            ?></p>
+                                echo $item->getProductDescription();
+                                ?></p>
                     </div>
 
 
@@ -205,6 +204,29 @@ if (isset($_POST['submit'])) {
                                 <tr>
                                     <td>Rating:<font color="red"></font></td>
                                     <td>
+                                        <span>
+                                            <span class="rating">
+                                                <input type="radio" class="rating-input"
+                                                       id="rating-input-1-5" name="rating-input-1" value="1">
+                                                <label for="rating-input-1-5" class="rating-star"></label>
+                                                <input type="radio" class="rating-input"
+                                                       id="rating-input-1-4" name="rating-input-1" value="2">
+                                                <label for="rating-input-1-4" class="rating-star"></label>
+                                                <input type="radio" class="rating-input"
+                                                       id="rating-input-1-3" name="rating-input-1" value="3">
+                                                <label for="rating-input-1-3" class="rating-star"></label>
+                                                <input type="radio" class="rating-input"
+                                                       id="rating-input-1-2" name="rating-input-1" value="4">
+                                                <label for="rating-input-1-2" class="rating-star"></label>
+                                                <input type="radio" class="rating-input"
+                                                       id="rating-input-1-1" name="rating-input-1" value="5">
+                                                <label for="rating-input-1-1" class="rating-star"></label>
+                                            </span>
+                                        </span>
+
+
+
+                                        <!--
                                         <input class="starRating" id="rating1" type="radio" name="ratings" value="1">
                                         <label for="rating1"><span>1</span></label>
 
@@ -218,9 +240,10 @@ if (isset($_POST['submit'])) {
                                         <label for="rating4"><span>4</span></label>
 
                                         <input class="starRating" id="rating5" type="radio" name="ratings" value="5"> 
-                                        <label for="rating5"><span>5</span></label>
+                                        <label for="rating5"><span>5</span></label>--> 
 
                                     </td>
+
                                 </tr>
                             </table>
                             <div class="bonesubmit">
@@ -251,15 +274,15 @@ if (isset($_POST['submit'])) {
                                         <td id="custName" width='30%'>
                                             <label><?php echo $custdata->getFname() . ' ' . $custdata->getLname(); ?></label><br/>
                                             <label><?php
-                                                $date = date_create($row->getReviewTS());
-                                                echo date_format($date, 'M d, Y');
-                                                ?></label><br/>
+                            $date = date_create($row->getReviewTS());
+                            echo date_format($date, 'M d, Y');
+                                    ?></label><br/>
                                             <label><?php echo $row->getRatings() . '/5'; ?></label>
                                         </td>
                                         <td width='70%'><p><?php echo $row->getReviews(); ?></p></td>
                                     </tr>
 
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
                             </table>
                             <?php
                         }
