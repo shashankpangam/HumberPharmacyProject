@@ -151,6 +151,7 @@ body{
     font-family:Tahoma, sans-serif;
     font-size:11px;
     color:#565656;
+    height: 250px;
 }
 .review a, .item a{
     font-family:Arial, Helvetica, sans-serif;
@@ -625,5 +626,9 @@ form.forgot_password{
 .rating-input:checked ~ .rating-star {
     background-position: 0 0;
 }
-
+/*CSS for starts in sidebar*/
+.starlocation{
+    float: left;
+    padding-bottom: 30px;
+}
 

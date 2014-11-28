@@ -41,8 +41,8 @@ $product = Product_DB::getProductByID($review->getProductID());
             <a href="productDesc.php?ID=<?php echo $product->getProductID(); ?>"><?php echo $product->getProductName() ?></a><br />
             <p><?php echo $review->getReviews(); ?></p>
             <!--<img src="../images/stars.jpg" alt="" width="118" height="20" class="stars" />-->
-            <label><?php echo $review->getRatings() . '/5'; ?></label>
-            <span>
+            <!--<label><?php echo $review->getRatings() . '/5'; ?></label>-->
+            <span class="starlocation">
                 <span class="rating">
                     <input type="radio" class="rating-input"
                            id="rating-input-1-5" name="rating-input-1" value="1">
