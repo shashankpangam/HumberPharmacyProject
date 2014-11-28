@@ -8,6 +8,13 @@ require_once '../Model/Review.php';
 require_once '../Model/Review_DB.php';
 require_once '../Model/RecentView_DB.php';
 
+
+//if (!$_SESSION['customer']) {
+//    header('location:login.php');
+//}
+
+
+
 if (isset($_GET['ID'])) {
     $request = $_GET['ID'];
 }
@@ -24,36 +31,7 @@ if (isset($_SESSION["customer"])) {
 
 $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 ?>
-<?php
-// define variables and set to empty values
-$error_message = $reviews = $ratings = "";
 
-if (isset($_POST['submit'])) {
-
-    //open a connection with the database
-    $id = null;
-
-    //intialize the variables with form data
-    //$productid = $request;
-    //$customerid = $_SESSION["customer"];
-    $reviews = $_POST['reviews'];
-    $ratings = $_POST['ratings'];
-
-
-    if (empty($reviews) || empty($ratings)) {
-        $error_message = "*One or more required fields are blank.";
-    } else {
-
-        $reviewid = null;
-        $productid = $request;
-        // $customerid = $_SESSION['customer'];
-        $review = new Review($reviewid, $productid, $customerid, $reviews, $ratings);
-        $insert = Review_DB::addNewReview($review);
-        header("Location: productDesc.php?ID=$productid" . 'echo "Thank you for Review";');
-        // header('location: thankyou.php?ID='.$productid);
-    }
-}
-?>
 
 <html>
     <head>
@@ -61,6 +39,17 @@ if (isset($_POST['submit'])) {
         <script src="../Scripts/my_js.js"></script>
     </head>
     <body>
+        <script type = "text/javascript">
+            function showMessage() {
+                alert("Thank you for the Review.We really Appreciate your feedback.");
+                return true;
+            }
+            function showError(){
+                alert("Please login to enter your review");
+                window.location = "login.php";
+                return true;
+            }
+        </script>
         <div id="content">
             <?php require_once './sidebar.php'; ?>
             <div id="main">
@@ -149,60 +138,55 @@ if (isset($_POST['submit'])) {
 
                     <?php
 // define variables and set to empty values
+
                     $error_message = $reviews = $ratings = "";
 
 
                     if (isset($_POST['submit'])) {
-
-                        //open a connection with the database
-                        $id = null;
-
-                        //intialize the variables with form data
-
-                        $productid = $_POST['productid'];
-                        $customerid = $_POST['customerid'];
-                        $reviews = $_POST['reviews'];
-                        $ratings = $_POST['ratings'];
-
-
-                        if (empty($productid) || empty($customerid)) {
-                            $error_message = " id is missing";
-                        } elseif (empty($reviews) || empty($ratings)) {
-                            $error_message = "*One or more required fields are blank.";
+                        if (!isset($_SESSION['customer'])) {
+                            ?>
+                    <script type="text/javascript">
+                        showError();
+                    </script>
+                    <?php
                         } else {
-                            $review = new Review($productid, $customerid, $reviews, $ratings);
+                            //intialize the variables with form data
+                            if (isset($_POST['reviews'])) {
+                                $reviews = $_POST['reviews'];
+                            }
+                            if (isset($_POST['ratings'])) {
+                                $ratings = $_POST['ratings'];
+                            }
+                            if (empty($reviews) || empty($ratings)) {
+                                $error_message = "*One or more required fields are blank.";
+                            } else {
+                                $review = new Review(null,$request, $customerid, $reviews, $ratings,null);
 
-                            $insert = Review_DB::addNewReview($review);
-                            header("Location: index.php");
+                                $insert = Review_DB::addNewReview($review);
+                                ?>
+                                <script type="text/javascript">
+                                    showMessage();
+                                </script>
+                                <?php
+                                unset($_POST);
+                            }
                         }
                     }
                     ?>
-
-                    <!--//                          $form = form;
-                    //                         if(!$_SESSION = 'customer')
-                    //                         {
-                    //                            $form = 'hidden';
-                    //                         }-->
-
                     <div  style="margin-top: 50px">
                         <form  name = "form" method="post" action="productDesc.php?<?php echo "ID=" . $request; ?>"> 
                             <label><strong><h2><font color="Black">Write your Reviews</font></h2></strong></label>
+                            <font color="red"><p style="padding-left: 30px; padding-top: 9px;">* Indicates a required field </p>
+                            <p style="padding-left: 30px;"><?php echo $error_message; ?></p></font>
                             <table style="width:80%" cellspacing="15">
 
-<!--                                <tr>
-                                    <td>Product ID:<font color="red"></font></td>
-                                    <td><input type="text"  name="productid" value=</td>
-                                </tr>
-                                <tr>
-                                    <td>Customer ID:<font color="red"></font></td>
-                                    <td><input type="text"  name="customerid" value="</td>
-                                </tr>-->
 
-                                <tr><td>Review:<font color="red"></font></td>
-                                    <td><textarea rows="5" cols="50"  name="reviews" value="<?php echo $reviews; ?>" ></textarea> </td> 		
+
+                                <tr><td>Review:<font color="red">*</font></td>
+                                    <td><textarea rows="5" cols="50"  name="reviews" value="" ></textarea> </td> 		
                                 </tr>
                                 <tr>
-                                    <td>Rating:<font color="red"></font></td>
+                                    <td>Rating:<font color="red">*</font></td>
                                     <td>
                                         <span>
                                             <span class="rating">
@@ -247,7 +231,7 @@ if (isset($_POST['submit'])) {
                                 </tr>
                             </table>
                             <div class="bonesubmit">
-                                <input class="btnsubmit" type="submit" name="submit" value="Submit" >
+                                <input class="btnsubmit" type="submit" name="submit" value="Submit"  />
 
                                 <span class="btwosubmit">
                                     <input class="btnsubmit" type="submit" name="clear" value="Clear" style="background-color:#CC3300;">
