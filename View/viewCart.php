@@ -27,6 +27,7 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                     <?php
                 }
                 ?>
+                    <!--css fixed-->
             <form method="post" action="payment_option.php">
                     <ul style="list-style-type:none">
                         <?php
