@@ -13,11 +13,11 @@
             endforeach;
             $productids = implode(',', $ids);
             $recentProducts = Product_DB::getProductsByIDS($productids);
-            echo '<label align="left"><strong><h2><font color="Black">Recent Views</font></h2></strong></label><div id="recentview"><ul>';
+            echo '<p style="font-size: 20px;float:left;"><strong><font color="Black">Recent Views:</font></strong></p><div id="recentview"><ul>';
             foreach ($recentProducts as $products) :
-                echo '<li><a href=productDesc.php?ID='.$products->getProductID().'><div class="imagecontainer"><img src='.$products->getProductImage().'  /></div><span class=recentProductName>'.$products->getProductName().'</span></a></li>';
+                echo '<li><a href=productDesc.php?ID='.$products->getProductID().'><div class="imagecontainer" style="width:130px"><img src='.$products->getProductImage().'  /></div></a></li>';
             endforeach;
-            echo '</ul></div>';
+            echo '</ul></div></p>';
         }
     }
     ?>

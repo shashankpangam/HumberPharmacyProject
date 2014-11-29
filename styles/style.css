@@ -600,7 +600,8 @@ form.forgot_password{
 }
 .recentProductName
 {
-    text-align:center;
+/*    text-align:center;*/
+    
 }
 //review stars CSS
 .rating {
