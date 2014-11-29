@@ -95,22 +95,23 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                                     echo $item->getProductPrice();
                                 }
                                 ?></label><br/><br />
-
-                            <label style="color: red;padding-top: 5px;padding-bottom: 5px;">RECOMMEND FOR:</label><br />
-                            <ul>
-                                <?php
-                                $symptoms = $item->getSymptoms();
-                                $arrSymptoms = explode(",", $symptoms);
-                                foreach ($arrSymptoms as $index) :
-                                    ?>
-                                    <li><?php echo $index; ?></li>
+                            
+                                <label style="color: red;padding-top: 5px;padding-bottom: 5px;">RECOMMEND FOR:</label><br />
+                                <ul>
                                     <?php
-                                endforeach;
-                                ?>
-                            </ul>
+                                    $symptoms = $item->getSymptoms();
+                                    $arrSymptoms = explode(",", $symptoms);
+                                    foreach ($arrSymptoms as $index) :
+                                        ?>
+                                        <li><?php echo $index; ?></li>
+                                        <?php
+                                    endforeach;
+                                    ?>
+                                </ul>
                         </div>                   
                     </div>
-                    <div style="padding-top: 15px;">
+                    
+                    <div style="padding-top: 15px;height:250px;">
                         <form method="post" action="../Model/ShoppingCart.php" > 
                             <label>Quantity</label>
                             <select name="product_qty">
@@ -126,6 +127,7 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                             <input type="hidden" name="return_url" value="<?php echo $current_url ?>" >
                         </form>
                     </div>
+                    
                     <br/><br/>
                     <div style="padding: 40px 0px 20px 30px; float:left;">           
                         <label><font color="red">PRODUCT DESCRIPTION</font></label>
@@ -226,16 +228,36 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                                     $customer = $row->getCustomerID();
                                     $custdata = Customer_DB::getCustomerByID($customer);
                                     ?> 
-                                  
-                                <p style="width: 100px;"><?php echo $custdata->getFname() . ' ' . $custdata->getLname(); ?><br>
+
+                                    <p style="width: 100px;"><?php echo $custdata->getFname() . ' ' . $custdata->getLname(); ?><br>
                                         <?php
-                                            $date = date_create($row->getReviewTS());
-                                            echo date_format($date, 'M d, Y');
-                                            ?><br>
-                                        <?php echo $row->getRatings() . '/5'; ?></p>
-                                <div style="position:relative;left:105px;bottom:55px;">
-                                    <p>| &nbsp;<?php echo $row->getReviews(); ?></p>
-                                </div>
+                                        $date = date_create($row->getReviewTS());
+                                        echo date_format($date, 'M d, Y');
+                                        ?><br>
+                                        <!--<?php echo $row->getRatings() . '/5'; ?>-->
+                                    <div style="float: left;">
+                                        <span class="rating">
+                                            <input type="radio" class="rating-input"
+                                                   id="rating-input-1-5" name="rating-input-1" value="1">
+                                            <label for="rating-input-1-5" class="rating-star"></label>
+                                            <input type="radio" class="rating-input"
+                                                   id="rating-input-1-4" name="rating-input-1" value="2">
+                                            <label for="rating-input-1-4" class="rating-star"></label>
+                                            <input type="radio" class="rating-input"
+                                                   id="rating-input-1-3" name="rating-input-1" value="3">
+                                            <label for="rating-input-1-3" class="rating-star"></label>
+                                            <input type="radio" class="rating-input"
+                                                   id="rating-input-1-2" name="rating-input-1" value="4">
+                                            <label for="rating-input-1-2" class="rating-star"></label>
+                                            <input type="radio" class="rating-input"
+                                                   id="rating-input-1-1" name="rating-input-1" value="5">
+                                            <label for="rating-input-1-1" class="rating-star"></label>
+                                        </span>
+                                    </div>
+                                    </p>
+                                    <div style="position:relative;left:105px;bottom:55px;">
+                                        <p><strong>|</strong>&nbsp;<?php echo $row->getReviews(); ?></p>
+                                    </div>
                                 <?php endforeach; ?>
                             </div>
                             <?php

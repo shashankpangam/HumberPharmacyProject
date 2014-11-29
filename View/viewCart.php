@@ -9,12 +9,12 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
     $total = 0;
     ?>
     <div id="main">
-        <div id="inside">
+        <div id="inside" style="padding: 25px 0px 10px 30px;">
             <?php
             if (isset($_SESSION["products"])) {
                 ?>
             <form method="post" action="payment_option.php">
-                    <ul>
+                    <ul style="list-style-type:none">
                         <?php
                         $cart_items = 0;
                         foreach ($_SESSION["products"] as $cart_itm) {
@@ -22,11 +22,11 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                             $result = Product_DB::getProductByID($product_id);
 
                             echo '<li class="cart-itm">';
-                            echo '<span class="remove-itm"><a href="../Model/ShoppingCart.php?removep=' . $cart_itm["code"] . '&return_url=' . $current_url . '">&times;</a></span>';
-                            echo '<div class="p-price">' . "$" . $result->getProductPrice() . '</div>';
+                            echo '<span class="remove-itm"><a href="../Model/ShoppingCart.php?removep=' . $cart_itm["code"] . '&return_url=' . $current_url . '">Remove Item</a></span>'.'<br><br>';
+                            echo '<div class="p-price">' . "$" . $result->getProductPrice() . '</div><br>';
                             echo '<div class="product-info">';
                             echo '<h3>' . $result->getProductName() . ' (Code :' . $result->getProductID() . ')</h3> ';
-                            echo '<div class="p-qty">Qty : ' . $cart_itm["qty"] . '</div>';
+                            echo '<div class="p-qty">Qty : ' . $cart_itm["qty"] . '</div><br>';
                             echo '<div>' . $result->getProductDescription() . '</div>';
                             echo '</div>';
                             echo '</li>';
@@ -45,8 +45,8 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                     </ul>
                     <?php
                     echo '<span class="check-out-txt">';
-                    echo '<strong>Total : ' . '$' . $total . '</strong>  ';
-                    echo '</span>';
+                    echo '<br>'.'<strong>Total : ' . '$' . $total . '</strong><br> ';
+                    echo '</span><br>';
                     echo '<input class="btnsubmit" type="submit" name="submit" value="Submit">';
                     ?>
                 </form>
