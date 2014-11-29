@@ -44,7 +44,7 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                 alert("Thank you for the Review.We really Appreciate your feedback.");
                 return true;
             }
-            function showError(){
+            function showError() {
                 alert("Please login to enter your review");
                 window.location = "login.php";
                 return true;
@@ -61,12 +61,12 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                         <h2><?php echo $item->getProductName() ?></h2>               
                         <div>
                             <label class="<?php
-                    $instock = $item->getProductQuantity();
-                    if ($instock > 0)
-                        echo "instock";
-                    else
-                        echo "outofstock";
-                    ?>" style="font-size: 20px;"><?php
+                            $instock = $item->getProductQuantity();
+                            if ($instock > 0)
+                                echo "instock";
+                            else
+                                echo "outofstock";
+                            ?>" style="font-size: 20px;"><?php
                                    $instock = $item->getProductQuantity();
                                    if ($instock > 0)
                                        echo "In Stock";
@@ -92,9 +92,9 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                                 ?>
                                 <label class="discountedPrice">$<?php echo ($item->getProductPrice() * ($checkoffer->getDiscountRate() / 100)); ?></label><br/>
                                 <label class="realDiscountedPrice">This was for : $<?php
-                            echo $item->getProductPrice();
-                        }
-                            ?></label><br/><br />
+                                    echo $item->getProductPrice();
+                                }
+                                ?></label><br/><br />
 
                             <label style="color: red;padding-top: 5px;padding-bottom: 5px;">RECOMMEND FOR:</label><br />
                             <ul>
@@ -120,18 +120,18 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
-                            <button class="btnsubmit" style="width:90px;height: 30px">Add To Cart</button>
+                            <button class="btnsubmit" style="width:90px;height: 30px;">Add To Cart</button>
                             <input type="hidden" name="product_id" value="<?php echo $item->getProductID(); ?>">
                             <input type="hidden" name="type" value="add" >
                             <input type="hidden" name="return_url" value="<?php echo $current_url ?>" >
                         </form>
                     </div>
                     <br/><br/>
-                    <div style="padding-left: 30px; top:40px; margin-top: 70px">           
+                    <div style="padding: 40px 0px 20px 30px; float:left;">           
                         <label><font color="red">PRODUCT DESCRIPTION</font></label>
                         <p><?php
-                                echo $item->getProductDescription();
-                                ?></p>
+                            echo $item->getProductDescription();
+                            ?></p>
                     </div>
 
 
@@ -145,10 +145,10 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                     if (isset($_POST['submit'])) {
                         if (!isset($_SESSION['customer'])) {
                             ?>
-                    <script type="text/javascript">
-                        showError();
-                    </script>
-                    <?php
+                            <script type="text/javascript">
+                                showError();
+                            </script>
+                            <?php
                         } else {
                             //intialize the variables with form data
                             if (isset($_POST['reviews'])) {
@@ -160,7 +160,7 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                             if (empty($reviews) || empty($ratings)) {
                                 $error_message = "*One or more required fields are blank.";
                             } else {
-                                $review = new Review(null,$request, $customerid, $reviews, $ratings,null);
+                                $review = new Review(null, $request, $customerid, $reviews, $ratings, null);
 
                                 $insert = Review_DB::addNewReview($review);
                                 ?>
@@ -173,63 +173,36 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                         }
                     }
                     ?>
-                    <div  style="margin-top: 50px">
-                        <form  name = "form" method="post" action="productDesc.php?<?php echo "ID=" . $request; ?>"> 
-                            <label><strong><h2><font color="Black">Write your Reviews</font></h2></strong></label>
-                            <font color="red"><p style="padding-left: 30px; padding-top: 9px;">* Indicates a required field </p>
-                            <p style="padding-left: 30px;"><?php echo $error_message; ?></p></font>
-                            <table style="width:80%" cellspacing="15">
+                    <div>
+                        <form  name="form" method="post" action="productDesc.php?<?php echo "ID=" . $request; ?>"> 
+                            <p style="font-size: 20px;"><strong><font color="Black">Write your Reviews</font></strong></p>
+                            <font color="red"><p>* Indicates a required field </p>
+                            <p><?php echo $error_message; ?></p></font>
 
+                            <p>Review:<font color="red">*</font></p>
+                            <textarea rows="5" cols="50"  name="reviews" value="" ></textarea>		
 
-
-                                <tr><td>Review:<font color="red">*</font></td>
-                                    <td><textarea rows="5" cols="50"  name="reviews" value="" ></textarea> </td> 		
-                                </tr>
-                                <tr>
-                                    <td>Rating:<font color="red">*</font></td>
-                                    <td>
-                                        <span>
-                                            <span class="rating">
-                                                <input type="radio" class="rating-input"
-                                                       id="rating-input-1-5" name="rating-input-1" value="1">
-                                                <label for="rating-input-1-5" class="rating-star"></label>
-                                                <input type="radio" class="rating-input"
-                                                       id="rating-input-1-4" name="rating-input-1" value="2">
-                                                <label for="rating-input-1-4" class="rating-star"></label>
-                                                <input type="radio" class="rating-input"
-                                                       id="rating-input-1-3" name="rating-input-1" value="3">
-                                                <label for="rating-input-1-3" class="rating-star"></label>
-                                                <input type="radio" class="rating-input"
-                                                       id="rating-input-1-2" name="rating-input-1" value="4">
-                                                <label for="rating-input-1-2" class="rating-star"></label>
-                                                <input type="radio" class="rating-input"
-                                                       id="rating-input-1-1" name="rating-input-1" value="5">
-                                                <label for="rating-input-1-1" class="rating-star"></label>
-                                            </span>
-                                        </span>
-
-
-
-                                        <!--
-                                        <input class="starRating" id="rating1" type="radio" name="ratings" value="1">
-                                        <label for="rating1"><span>1</span></label>
-
-                                        <input class="starRating"  id="rating2" type="radio" name="ratings" value="2">
-                                        <label for="rating2"><span>2</span></label>
-
-                                        <input class="starRating" id="rating3" type="radio" name="ratings" value="3">
-                                        <label for="rating3"><span>3</span></label>
-
-                                        <input class="starRating" id="rating4" type="radio" name="ratings" value="4">
-                                        <label for="rating4"><span>4</span></label>
-
-                                        <input class="starRating" id="rating5" type="radio" name="ratings" value="5"> 
-                                        <label for="rating5"><span>5</span></label>--> 
-
-                                    </td>
-
-                                </tr>
-                            </table>
+                            <p>Rating:<font color="red">*</font></p>
+                            <div style="float: left;">
+                                <span class="rating">
+                                    <input type="radio" class="rating-input"
+                                           id="rating-input-1-5" name="rating-input-1" value="1">
+                                    <label for="rating-input-1-5" class="rating-star"></label>
+                                    <input type="radio" class="rating-input"
+                                           id="rating-input-1-4" name="rating-input-1" value="2">
+                                    <label for="rating-input-1-4" class="rating-star"></label>
+                                    <input type="radio" class="rating-input"
+                                           id="rating-input-1-3" name="rating-input-1" value="3">
+                                    <label for="rating-input-1-3" class="rating-star"></label>
+                                    <input type="radio" class="rating-input"
+                                           id="rating-input-1-2" name="rating-input-1" value="4">
+                                    <label for="rating-input-1-2" class="rating-star"></label>
+                                    <input type="radio" class="rating-input"
+                                           id="rating-input-1-1" name="rating-input-1" value="5">
+                                    <label for="rating-input-1-1" class="rating-star"></label>
+                                </span>
+                            </div>
+                            <br>
                             <div class="bonesubmit">
                                 <input class="btnsubmit" type="submit" name="submit" value="Submit"  />
 
@@ -237,41 +210,37 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                                     <input class="btnsubmit" type="submit" name="clear" value="Clear" style="background-color:#CC3300;">
                                 </span>
                             </div>
-                        </form>
-
-                    </div><br/><label><strong><h2><font color="Black">Reviews</font></h2></strong></label>
+                        </form>                       
+                    </div><br/>
+                    <p style="font-size: 20px;"><strong><font color="Black">Reviews</font></strong></p>
                     <div id="previousReviews">
-
                         <?php
                         $result = Review_DB::getReviewByProducts($request);
                         if ($result == null) {
                             echo 'You are the first one to write a review';
                         } else {
                             ?>
-                            <table>
+                            <div>                             
                                 <?php
                                 foreach ($result as $row) :
                                     $customer = $row->getCustomerID();
                                     $custdata = Customer_DB::getCustomerByID($customer);
-                                    ?>
-                                    <tr>
-                                        <td id="custName" width='30%'>
-                                            <label><?php echo $custdata->getFname() . ' ' . $custdata->getLname(); ?></label><br/>
-                                            <label><?php
-                            $date = date_create($row->getReviewTS());
-                            echo date_format($date, 'M d, Y');
-                                    ?></label><br/>
-                                            <label><?php echo $row->getRatings() . '/5'; ?></label>
-                                        </td>
-                                        <td width='70%'><p><?php echo $row->getReviews(); ?></p></td>
-                                    </tr>
-
+                                    ?> 
+                                  
+                                <p style="width: 100px;"><?php echo $custdata->getFname() . ' ' . $custdata->getLname(); ?><br>
+                                        <?php
+                                            $date = date_create($row->getReviewTS());
+                                            echo date_format($date, 'M d, Y');
+                                            ?><br>
+                                        <?php echo $row->getRatings() . '/5'; ?></p>
+                                <div style="position:relative;left:105px;bottom:55px;">
+                                    <p>| &nbsp;<?php echo $row->getReviews(); ?></p>
+                                </div>
                                 <?php endforeach; ?>
-                            </table>
+                            </div>
                             <?php
                         }
                         ?>
-
                     </div>
                 </div>
             </div>
