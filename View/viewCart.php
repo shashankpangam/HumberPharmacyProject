@@ -3,6 +3,13 @@ require_once './header.php';
 require_once '../Model/Product_DB.php';
 $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 ?>
+<script type = "text/javascript">
+    function showError() {
+        alert("Please login to Checkout!");
+        window.location = "login.php";
+        return true;
+    }
+</script>
 <div id="content">
     <?php
     require_once './sidebar.php';
@@ -12,8 +19,15 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
         <div id="inside">
             <?php
             if (isset($_SESSION["products"])) {
+                if (!isset($_SESSION["customer"])) {
+                    ?>
+                    <script type="text/javascript">
+                        showError();
+                    </script>
+                    <?php
+                }
                 ?>
-            <form method="post" action="payment_option.php">
+                <form method="post" action="payment_option.php">
                     <ul>
                         <?php
                         $cart_items = 0;
