@@ -27,7 +27,7 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                     <?php
                 }
                 ?>
-                    <!--css fixed-->
+                   
             <form method="post" action="payment_option.php">
                     <ul style="list-style-type:none">
                         <?php
@@ -37,12 +37,14 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                             $result = Product_DB::getProductByID($product_id);
 
                             echo '<li class="cart-itm">';
-                            echo '<span class="remove-itm" style="padding-top:10px;"><a href="../Model/ShoppingCart.php?removep=' . $cart_itm["code"] . '&return_url=' . $current_url . '">Remove Item</a></span>'.'<br><br>';
-                            echo '<div class="p-price">' . "$" . $result->getProductPrice() . '</div><br>';
+//                            echo '<span class="remove-itm" style="padding-top:10px;"><a href="../Model/ShoppingCart.php?removep=' . $cart_itm["code"] . '&return_url=' . $current_url . '"><font color="red">Remove Item</font></a></span>'.'<br><br>';
+//                            echo '<div class="p-price">' . "$" . $result->getProductPrice() . '</div><br>';
                             echo '<div class="product-info">';
-                            echo '<h3>' . $result->getProductName() . ' (Code :' . $result->getProductID() . ')</h3> ';
+                            echo '<h3>' . $result->getProductName() . '</h3> '.'<div class="p-price">' . "$" . $result->getProductPrice() . '</div><br>';
+                            
                             echo '<div class="p-qty">Qty : ' . $cart_itm["qty"] . '</div><br>';
                             echo '<div>' . $result->getProductDescription() . '</div>';
+                            echo '<span class="remove-itm" style="padding-top:10px;"><a href="../Model/ShoppingCart.php?removep=' . $cart_itm["code"] . '&return_url=' . $current_url . '"><font color="red">Remove Item</font></a></span>'.'<br><br>';
                             echo '</div>';
                             echo '</li>';
                             $subtotal = ($cart_itm["price"] * $cart_itm["qty"]);

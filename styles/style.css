@@ -53,6 +53,8 @@ body{
     display:block;
     float:left;
     margin:53px 0 0 16px;
+    width:70%;
+
 }
 #menu li{
     display:inline;
@@ -61,7 +63,7 @@ body{
 #menu img{
     float:left;
     margin:0 0 0 1px;
-    width:130px;
+    width:19.7%;
 }
 #content{
     width:919px;
@@ -601,8 +603,8 @@ form.forgot_password{
 }
 .recentProductName
 {
-/*    text-align:center;*/
-    
+    /*    text-align:center;*/
+
 }
 //review stars CSS
 .rating {
@@ -633,6 +635,27 @@ form.forgot_password{
     float: left;
     padding-bottom: 30px;
 }
+
+.p-price{
+    float:right;
+    position: relative;
+    bottom:20px;
+    right:30px;
+    font-size: 15px;
+    font-weight: 700;
+}
+.remove-itm{
+    float:right;
+    position: relative;
+    bottom:-1px;
+    right:30px;
+}
+.check-out-txt{
+    float:right;
+    position: relative;
+    right:30px;
+}
+
 #paypalimg{
     position: relative;
     top:-76px;
