@@ -32,10 +32,11 @@ require_once '../Model/Product_DB.php';
     <div>
         <img src="../images/title2.gif" alt="" width="233" height="41" /><br />																																																																																																																																																															
         <div class="review">
-<?php
-$review = Review_DB::getRandomReview();
-$product = Product_DB::getProductByID($review->getProductID());
-?>
+            <?php
+            $review = Review_DB::getRandomReview();
+            $ratings = $review->getRatings();
+            $product = Product_DB::getProductByID($review->getProductID());
+            ?>
             <a href="productDesc.php?ID=<?php echo $product->getProductID(); ?>"><img src="<?php echo $product->getProductImage(); ?>" alt="<?php echo $product->getProductName(); ?>" width="181" height="161" /></a>
             <br />
             <a href="productDesc.php?ID=<?php echo $product->getProductID(); ?>"><?php echo $product->getProductName() ?></a><br />
@@ -44,21 +45,19 @@ $product = Product_DB::getProductByID($review->getProductID());
             <!--<label><?php echo $review->getRatings() . '/5'; ?></label>-->
             <span class="starlocation">
                 <span class="rating">
-                    <input type="radio" class="rating-input"
-                           id="rating-input-1-5" name="rating-input-1" value="1">
-                    <label for="rating-input-1-5" class="rating-star"></label>
-                    <input type="radio" class="rating-input"
-                           id="rating-input-1-4" name="rating-input-1" value="2">
-                    <label for="rating-input-1-4" class="rating-star"></label>
-                    <input type="radio" class="rating-input"
-                           id="rating-input-1-3" name="rating-input-1" value="3">
-                    <label for="rating-input-1-3" class="rating-star"></label>
-                    <input type="radio" class="rating-input"
-                           id="rating-input-1-2" name="rating-input-1" value="4">
-                    <label for="rating-input-1-2" class="rating-star"></label>
-                    <input type="radio" class="rating-input"
-                           id="rating-input-1-1" name="rating-input-1" value="5">
-                    <label for="rating-input-1-1" class="rating-star"></label>
+                    <?php
+                    $num = 5;
+                    for ($i = 1; $i < 6; $i++) {
+                        ?>
+                        <input type="radio" class="rating-input"
+                               id="rating-input-1-<?php echo $num; ?>" name="rating-input-<?php echo $i; ?>" value="<?php echo$i; ?>" <?php if ($num == $ratings) {
+                        echo'checked=checked';
+                    } ?>>
+                        <label for="rating-input-1-<?php echo $num; ?>" class="rating-star"></label>
+                        <?php
+                        $num--;
+                    }
+                    ?>
                 </span>
             </span>
         </div>

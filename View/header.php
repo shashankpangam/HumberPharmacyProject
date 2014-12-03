@@ -2,7 +2,6 @@
 session_start();
 require_once '../Model/Customer_DB.php';
 require_once '../Model/Customer.php';
-
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -65,23 +64,19 @@ require_once '../Model/Customer.php';
                 if (isset($_SESSION["customer"])) {
                     $customerid = $_SESSION["customer"];
                     $customer = Customer_DB::getCustomerByID($customerid);
-                    $user_name=$customer->getUsername();
+                    $user_name = $customer->getUsername();
                     ?>
                     <span><strong>Welcome:</strong> &nbsp;<?php echo $user_name; ?>&nbsp; | &nbsp;<?php
-                        echo'<a href="signout.php">Sign out</a>';
-                    } else {
-                        ?>
+                echo'<a href="signout.php">Sign out</a>';
+            } else {
+                    ?>
                         <span><strong>Welcome</strong> &nbsp;<a href="login.php">Log in</a> &nbsp; | &nbsp; <a href="register.php">Register</a></span><?php }
-                    ?></span>
+                ?></span>
             </div>
             <ul id="menu">
                 <li><a href="index.php"><img src="../images/but1.gif" alt="Home Page" width="110" height="32" /></a></li>
                 <li><a href="login.php"><img src="../images/but2.gif" alt="Log in" width="110" height="32" /></a></li>
                 <li><a href="register.php"><img src="../images/but3.gif" alt="Registration" width="110" height="32" /></a></li>
-
-                <li><a href="login.php"><img src="../images/but4.gif" alt="My account" width="110" height="32" /></a></li>
-                <li><a href="index.php"><img src="../images/but5.gif" alt="Shopping Cart" width="110" height="32" /></a></li>
-
                 <!--<li><a href="login.php"><img src="../images/but4.gif" alt="My account" width="110" height="32" /></a></li>-->
                 <li><a href="viewCart.php"><img src="../images/but5.gif" alt="Shopping Cart" width="110" height="32" /></a></li>
 
