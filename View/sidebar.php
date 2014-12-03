@@ -10,7 +10,7 @@ require_once '../Model/Product_DB.php';
             <li><a href="productList.php?category=DietandFitness&min=0&max=6" name="category" value="dietandfitness">Diet and Fitness</a></li>
             <li><a href="productList.php?category=Personal&min=0&max=6" name="category" value="Personal">Personal</a></li>
             <li><a href="productList.php?category=FeaturedProducts&min=0&max=6" name="category" values="FeaturedProducts">Featured Products</a></li>
-            <li><a href="index.php">Checkout</a></li>
+            <li><a href="viewCart.php">Checkout</a></li>
         </ul>
     </div>
     <div id="cart">
