@@ -633,4 +633,10 @@ form.forgot_password{
     float: left;
     padding-bottom: 30px;
 }
+#paypalimg{
+    position: relative;
+    top:-76px;
+    right:-370px;
+    z-index: 1;
+}
 

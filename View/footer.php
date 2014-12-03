@@ -22,7 +22,10 @@
     }
     ?>
 
-    <img src="../images/cards.jpg" alt="" width="919" height="76" />
+    <div id="footer-wrapper">
+        <img src="../images/cards.jpg" alt="" width="919" height="76" ><img src="../images/paypalimage.png" height="70" width="70" id="paypalimg">
+    </div>
+    
     <ul>
         <li><a href="index.php">Home page</a> |</li>
         <li><a href="productSale.php">Sale Products</a> |</li>
