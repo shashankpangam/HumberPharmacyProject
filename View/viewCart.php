@@ -37,7 +37,7 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                             $result = Product_DB::getProductByID($product_id);
 
                             echo '<li class="cart-itm">';
-                            echo '<span class="remove-itm"><a href="../Model/ShoppingCart.php?removep=' . $cart_itm["code"] . '&return_url=' . $current_url . '">Remove Item</a></span>'.'<br><br>';
+                            echo '<span class="remove-itm" style="padding-top:10px;"><a href="../Model/ShoppingCart.php?removep=' . $cart_itm["code"] . '&return_url=' . $current_url . '">Remove Item</a></span>'.'<br><br>';
                             echo '<div class="p-price">' . "$" . $result->getProductPrice() . '</div><br>';
                             echo '<div class="product-info">';
                             echo '<h3>' . $result->getProductName() . ' (Code :' . $result->getProductID() . ')</h3> ';

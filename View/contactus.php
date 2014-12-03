@@ -1,5 +1,6 @@
 <?php
 require_once 'Mail.php';
+//validating contact us form
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
 $name = $email = $gender = $comment = $website = "";
 if (isset($_POST["submit"])) {
@@ -62,8 +63,8 @@ if (isset($_POST["submit"])) {
 function send_email($to, $from, $subject, $body, $is_body_html = false) {
 
     $smtp = array();
-    // **** You must change the following to match your
-    // **** SMTP server and account information.
+    // following is change to match the 
+    // SMTP server and account information.
     $smtp['host'] = 'ssl://smtp.gmail.com';
     $smtp['port'] = 465;
     $smtp['auth'] = true;

@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
                             <a href ="index.php>"><input class="btnsubmit" type="submit" name="clear" value="Cancel" style="background-color:#CC3300;"></a>
                         </span>
                     </div><br> 
-                    <a href="index.php">Forgot password click here</a>
+                    <a href="contactus.php">Forgot password click here</a>
                 </div>
             </fieldset>
         </form>
