@@ -78,9 +78,9 @@ require_once '../Model/Customer.php';
                 <li><a href="index.php"><img src="../images/but1.gif" alt="Home Page" width="110" height="32" /></a></li>
                 <li><a href="login.php"><img src="../images/but2.gif" alt="Log in" width="110" height="32" /></a></li>
                 <li><a href="register.php"><img src="../images/but3.gif" alt="Registration" width="110" height="32" /></a></li>
-                <li><a href="login.php"><img src="../images/but4.gif" alt="My account" width="110" height="32" /></a></li>
-                <li><a href="index.php"><img src="../images/but5.gif" alt="Shopping Cart" width="110" height="32" /></a></li>
-                <li><a href="index.php"><img src="../images/but6.gif" alt="Checkout" width="110" height="32" /></a></li>
+                <!--<li><a href="login.php"><img src="../images/but4.gif" alt="My account" width="110" height="32" /></a></li>-->
+                <li><a href="viewCart.php"><img src="../images/but5.gif" alt="Shopping Cart" width="110" height="32" /></a></li>
+                <li><a href="viewCart.php"><img src="../images/but6.gif" alt="Checkout" width="110" height="32" /></a></li>
             </ul>
         </div>
 
