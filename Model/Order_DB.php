@@ -14,7 +14,6 @@ class Order_DB {
             foreach($results as $row)
             {
                 $record = new Order($row['orderid'],
-                        $row['productid'],
                         $row['customerid'],
                         $row['couponcode'],
                         $row['price'],
@@ -35,7 +34,6 @@ class Order_DB {
             $result=$stm->fetch();
             
             $record = new Order($result['orderid'],
-                        $result['productid'],
                         $result['customerid'],
                         $result['couponcode'],
                         $result['price'],
@@ -56,7 +54,6 @@ class Order_DB {
             foreach($results as $row)
             {
                 $record = new Order($row['orderid'],
-                        $row['productid'],
                         $row['customerid'],
                         $row['couponcode'],
                         $row['price'],
@@ -81,7 +78,6 @@ class Order_DB {
             foreach($results as $row)
             {
                 $record = new Order($row['orderid'],
-                        $row['productid'],
                         $row['customerid'],
                         $row['couponcode'],
                         $row['price'],
@@ -90,6 +86,21 @@ class Order_DB {
                 $records[]=$record;
             }
             return $records;
+    }
+    
+    public static function addNewOrder($order)
+    {
+        $customerid=$order->getCustomerID();
+        $price=$order->getPrice();
+        
+        $db = Databases::connectDB();
+        $query = "insert into tbl_order (customerid,couponcode,price) values (:customerid,:price)";
+        $stm = $db->prepare($query);
+        
+        $stm->bindParam(':customerid', $customerid, PDO::PARAM_INT, 10);
+        $stm->bindParam(':price', $price);
+        $stm->execute();
+        $lastID=$stm->lastInsertId();
     }
 }
 

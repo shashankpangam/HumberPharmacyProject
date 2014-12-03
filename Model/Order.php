@@ -2,15 +2,13 @@
 
 class Order {
     private $orderid;
-    private $productid;
     private $customerid;
     private $couponcode;
     private $price;
     private $orderdate;
     
-    public function __construct($orderid,$productid,$customerid,$couponcode,$price,$orderdate) {
+    public function __construct($orderid,$customerid,$couponcode,$price,$orderdate) {
         $this->orderid=$orderid;
-        $this->productid=$productid;
         $this->customerid=$customerid;
         $this->couponcode=$couponcode;
         $this->price=$price;
@@ -20,14 +18,6 @@ class Order {
     public function getOrderID()
     {
         return $this->orderid;
-    }
-    public function getProductID()
-    {
-        return $this->productid;
-    }
-    public function setProductID($productID)
-    {
-        $this->productid=$productID;
     }
     public function getCustomerID()
     {
