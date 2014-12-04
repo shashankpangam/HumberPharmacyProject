@@ -34,7 +34,7 @@ require_once '../Model/Product_DB.php';
         <div class="review">
             <?php
             $review = Review_DB::getRandomReview();
-            $ratings = $review->getRatings();
+            $sideratings = $review->getRatings();
             $product = Product_DB::getProductByID($review->getProductID());
             ?>
             <a href="productDesc.php?ID=<?php echo $product->getProductID(); ?>"><img src="<?php echo $product->getProductImage(); ?>" alt="<?php echo $product->getProductName(); ?>" width="181" height="161" /></a>
@@ -50,10 +50,10 @@ require_once '../Model/Product_DB.php';
                     for ($i = 1; $i < 6; $i++) {
                         ?>
                         <input type="radio" class="rating-input"
-                               id="rating-input-1-<?php echo $num; ?>" name="rating-input-<?php echo $i; ?>" value="<?php echo$i; ?>" <?php if ($num == $ratings) {
+                               id="rating-input-<?php echo $num; ?>" name="rating-input-<?php echo $i; ?>" value="<?php echo$i; ?>" <?php if ($num == $sideratings) {
                         echo'checked=checked';
                     } ?>>
-                        <label for="rating-input-1-<?php echo $num; ?>" class="rating-star"></label>
+                        <label for="rating-input-<?php echo $num; ?>" class="rating-star"></label>
                         <?php
                         $num--;
                     }

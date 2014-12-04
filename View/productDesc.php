@@ -209,7 +209,7 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                                 <input class="btnsubmit" type="submit" name="submit" value="Submit"  />
 
                                 <span class="btwosubmit">
-                                    <input class="btnsubmit" type="submit" name="clear" value="Clear" style="background-color:#CC3300;">
+                                    <input class="btnsubmit" type="reset" name="clear" value="Clear" style="background-color:#CC3300;">
                                 </span>
                             </div>
                         </form>                       
@@ -233,9 +233,9 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                                         <?php
                                         $date = date_create($row->getReviewTS());
                                         echo date_format($date, 'M d, Y');
-                                        $curratings=$row->getRatings();
+                                        $curratings = $row->getRatings();
                                         ?><br>
-                                        <!--<?php echo $row->getRatings() . '/5'; ?>-->
+                                        <?php echo $row->getRatings() . '/5'; ?>
                                     <div style="float: left;">
                                         <span class="rating">
                                             <?php
@@ -247,8 +247,8 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                                                        if ($num == $curratings) {
                                                            echo'checked=checked';
                                                        }
-                                                       ?>>
-                                                <label for="rating-input-1-<?php echo $num; ?>" class="rating-star"></label>
+                                                       ?>/><>
+                                                <label for="rating-input-<?php echo $num; ?>" class="rating-star"></label>
                                                 <?php
                                                 $num--;
                                             }
@@ -259,7 +259,7 @@ $current_url = base64_encode($url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER
                                     <div style="position:relative;left:105px;bottom:55px;">
                                         <p><strong>|</strong>&nbsp;<?php echo $row->getReviews(); ?></p>
                                     </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
                             </div>
                             <?php
                         }
